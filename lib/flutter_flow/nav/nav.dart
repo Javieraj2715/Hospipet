@@ -73,13 +73,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const ProductsListWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const ProductsListWidget(),
         ),
         FFRoute(
           name: 'Login',
@@ -126,6 +126,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'NuevaCita')
               : const NuevaCitaWidget(),
+        ),
+        FFRoute(
+          name: 'addProduct',
+          path: '/addProduct',
+          builder: (context, params) => const AddProductWidget(),
+        ),
+        FFRoute(
+          name: 'ProductsList',
+          path: '/productsList',
+          builder: (context, params) => ProductsListWidget(
+            solD: params.getParam(
+              'solD',
+              ParamType.bool,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -296,7 +311,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/login';
+            return '/productsList';
           }
           return null;
         },

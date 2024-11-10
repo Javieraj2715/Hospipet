@@ -7,3 +7,6 @@ export '/carrito_de_compras/carrito/carrito_widget.dart' show CarritoWidget;
 export '/citas/gestionar_citas/gestionar_citas_widget.dart'
     show GestionarCitasWidget;
 export '/citas/nueva_cita/nueva_cita_widget.dart' show NuevaCitaWidget;
+export '/inventario/add_product/add_product_widget.dart' show AddProductWidget;
+export '/inventario/products_list/products_list_widget.dart'
+    show ProductsListWidget;
