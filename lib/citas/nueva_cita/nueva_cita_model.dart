@@ -6,49 +6,48 @@ import 'package:flutter/material.dart';
 class NuevaCitaModel extends FlutterFlowModel<NuevaCitaWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
-  DateTime? datePicked;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode5;
-  TextEditingController? textController5;
-  String? Function(BuildContext, String?)? textController5Validator;
+  final formKey = GlobalKey<FormState>();
+  // State field(s) for TxtNombreDueno widget.
+  FocusNode? txtNombreDuenoFocusNode;
+  TextEditingController? txtNombreDuenoTextController;
+  String? Function(BuildContext, String?)?
+      txtNombreDuenoTextControllerValidator;
+  // State field(s) for TxtNombreMascota widget.
+  FocusNode? txtNombreMascotaFocusNode;
+  TextEditingController? txtNombreMascotaTextController;
+  String? Function(BuildContext, String?)?
+      txtNombreMascotaTextControllerValidator;
+  // State field(s) for TxtNombreVeterinario widget.
+  FocusNode? txtNombreVeterinarioFocusNode;
+  TextEditingController? txtNombreVeterinarioTextController;
+  String? Function(BuildContext, String?)?
+      txtNombreVeterinarioTextControllerValidator;
+  DateTime? datePicked1;
+  DateTime? datePicked2;
+  // State field(s) for DropDownTipoServicio widget.
+  String? dropDownTipoServicioValue;
+  FormFieldController<String>? dropDownTipoServicioValueController;
+  // State field(s) for TxtNotasAdiconales widget.
+  FocusNode? txtNotasAdiconalesFocusNode;
+  TextEditingController? txtNotasAdiconalesTextController;
+  String? Function(BuildContext, String?)?
+      txtNotasAdiconalesTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    txtNombreDuenoFocusNode?.dispose();
+    txtNombreDuenoTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    txtNombreMascotaFocusNode?.dispose();
+    txtNombreMascotaTextController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    txtNombreVeterinarioFocusNode?.dispose();
+    txtNombreVeterinarioTextController?.dispose();
 
-    textFieldFocusNode4?.dispose();
-    textController4?.dispose();
-
-    textFieldFocusNode5?.dispose();
-    textController5?.dispose();
+    txtNotasAdiconalesFocusNode?.dispose();
+    txtNotasAdiconalesTextController?.dispose();
   }
 }

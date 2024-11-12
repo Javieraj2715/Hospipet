@@ -10,6 +10,7 @@ import 'schema/productos_record.dart';
 import 'schema/cliente_record.dart';
 import 'schema/mascota_record.dart';
 import 'schema/proveedores_record.dart';
+import 'schema/citas_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -23,6 +24,7 @@ export 'schema/productos_record.dart';
 export 'schema/cliente_record.dart';
 export 'schema/mascota_record.dart';
 export 'schema/proveedores_record.dart';
+export 'schema/citas_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -204,6 +206,43 @@ Future<List<ProveedoresRecord>> queryProveedoresRecordOnce({
     queryCollectionOnce(
       ProveedoresRecord.collection,
       ProveedoresRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query CitasRecords (as a Stream and as a Future).
+Future<int> queryCitasRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      CitasRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<CitasRecord>> queryCitasRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      CitasRecord.collection,
+      CitasRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<CitasRecord>> queryCitasRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      CitasRecord.collection,
+      CitasRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

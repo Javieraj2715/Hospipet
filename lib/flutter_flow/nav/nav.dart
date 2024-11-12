@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -139,6 +140,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             solD: params.getParam(
               'solD',
               ParamType.bool,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'EditarProductos',
+          path: '/editarProductos',
+          asyncParams: {
+            'paramProducto':
+                getDoc(['productos'], ProductosRecord.fromSnapshot),
+          },
+          builder: (context, params) => EditarProductosWidget(
+            paramProducto: params.getParam(
+              'paramProducto',
+              ParamType.Document,
             ),
           ),
         )

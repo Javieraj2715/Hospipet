@@ -10,3 +10,5 @@ export '/citas/nueva_cita/nueva_cita_widget.dart' show NuevaCitaWidget;
 export '/inventario/add_product/add_product_widget.dart' show AddProductWidget;
 export '/inventario/products_list/products_list_widget.dart'
     show ProductsListWidget;
+export '/inventario/editar_productos/editar_productos_widget.dart'
+    show EditarProductosWidget;
