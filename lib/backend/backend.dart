@@ -11,6 +11,8 @@ import 'schema/cliente_record.dart';
 import 'schema/mascota_record.dart';
 import 'schema/proveedores_record.dart';
 import 'schema/citas_record.dart';
+import 'schema/historial_medico_record.dart';
+import 'schema/usuarios_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -25,6 +27,8 @@ export 'schema/cliente_record.dart';
 export 'schema/mascota_record.dart';
 export 'schema/proveedores_record.dart';
 export 'schema/citas_record.dart';
+export 'schema/historial_medico_record.dart';
+export 'schema/usuarios_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -243,6 +247,80 @@ Future<List<CitasRecord>> queryCitasRecordOnce({
     queryCollectionOnce(
       CitasRecord.collection,
       CitasRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query HistorialMedicoRecords (as a Stream and as a Future).
+Future<int> queryHistorialMedicoRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      HistorialMedicoRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<HistorialMedicoRecord>> queryHistorialMedicoRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      HistorialMedicoRecord.collection,
+      HistorialMedicoRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<HistorialMedicoRecord>> queryHistorialMedicoRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      HistorialMedicoRecord.collection,
+      HistorialMedicoRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query UsuariosRecords (as a Stream and as a Future).
+Future<int> queryUsuariosRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      UsuariosRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<UsuariosRecord>> queryUsuariosRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      UsuariosRecord.collection,
+      UsuariosRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<UsuariosRecord>> queryUsuariosRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      UsuariosRecord.collection,
+      UsuariosRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

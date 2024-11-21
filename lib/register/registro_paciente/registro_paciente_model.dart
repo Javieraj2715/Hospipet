@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'registro_widget.dart' show RegistroWidget;
+import 'registro_paciente_widget.dart' show RegistroPacienteWidget;
 import 'package:flutter/material.dart';
 
-class RegistroModel extends FlutterFlowModel<RegistroWidget> {
+class RegistroPacienteModel extends FlutterFlowModel<RegistroPacienteWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.
@@ -26,16 +26,16 @@ class RegistroModel extends FlutterFlowModel<RegistroWidget> {
   FocusNode? textFieldFocusNode5;
   TextEditingController? textController5;
   String? Function(BuildContext, String?)? textController5Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode6;
-  TextEditingController? textController6;
-  String? Function(BuildContext, String?)? textController6Validator;
   // State field(s) for ChoiceChips widget.
   FormFieldController<List<String>>? choiceChipsValueController;
   String? get choiceChipsValue =>
       choiceChipsValueController?.value?.firstOrNull;
   set choiceChipsValue(String? val) =>
       choiceChipsValueController?.value = val != null ? [val] : [];
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode6;
+  TextEditingController? textController6;
+  String? Function(BuildContext, String?)? textController6Validator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode7;
   TextEditingController? textController7;
@@ -60,10 +60,6 @@ class RegistroModel extends FlutterFlowModel<RegistroWidget> {
   FocusNode? textFieldFocusNode12;
   TextEditingController? textController12;
   String? Function(BuildContext, String?)? textController12Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode13;
-  TextEditingController? textController13;
-  String? Function(BuildContext, String?)? textController13Validator;
 
   @override
   void initState(BuildContext context) {}
@@ -105,8 +101,5 @@ class RegistroModel extends FlutterFlowModel<RegistroWidget> {
 
     textFieldFocusNode12?.dispose();
     textController12?.dispose();
-
-    textFieldFocusNode13?.dispose();
-    textController13?.dispose();
   }
 }

@@ -406,7 +406,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 context.pushNamed(
-                                  'Registro',
+                                  'crearUsuario',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: const TransitionInfo(
                                       hasTransition: true,

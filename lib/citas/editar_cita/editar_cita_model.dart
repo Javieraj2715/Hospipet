@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'nueva_cita_widget.dart' show NuevaCitaWidget;
+import 'editar_cita_widget.dart' show EditarCitaWidget;
 import 'package:flutter/material.dart';
 
-class NuevaCitaModel extends FlutterFlowModel<NuevaCitaWidget> {
+class EditarCitaModel extends FlutterFlowModel<EditarCitaWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();

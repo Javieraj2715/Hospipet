@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -51,11 +50,6 @@ class ProductosRecord extends FirestoreRecord {
   int get cantidadDisponible => _cantidadDisponible ?? 0;
   bool hasCantidadDisponible() => _cantidadDisponible != null;
 
-  // "CATEGORIA" field.
-  List<String>? _categoria;
-  List<String> get categoria => _categoria ?? const [];
-  bool hasCategoria() => _categoria != null;
-
   void _initializeFields() {
     _productoId = castToType<int>(snapshotData['PRODUCTO_ID']);
     _nombreProducto = snapshotData['NOMBRE_PRODUCTO'] as String?;
@@ -64,7 +58,6 @@ class ProductosRecord extends FirestoreRecord {
     _imagenProducto = snapshotData['IMAGEN_PRODUCTO'] as String?;
     _descripcion = snapshotData['DESCRIPCION'] as String?;
     _cantidadDisponible = castToType<int>(snapshotData['CANTIDAD_DISPONIBLE']);
-    _categoria = getDataList(snapshotData['CATEGORIA']);
   }
 
   static CollectionReference get collection =>
@@ -130,15 +123,13 @@ class ProductosRecordDocumentEquality implements Equality<ProductosRecord> {
 
   @override
   bool equals(ProductosRecord? e1, ProductosRecord? e2) {
-    const listEquality = ListEquality();
     return e1?.productoId == e2?.productoId &&
         e1?.nombreProducto == e2?.nombreProducto &&
         e1?.precioUnitario == e2?.precioUnitario &&
         e1?.detalleProducto == e2?.detalleProducto &&
         e1?.imagenProducto == e2?.imagenProducto &&
         e1?.descripcion == e2?.descripcion &&
-        e1?.cantidadDisponible == e2?.cantidadDisponible &&
-        listEquality.equals(e1?.categoria, e2?.categoria);
+        e1?.cantidadDisponible == e2?.cantidadDisponible;
   }
 
   @override
@@ -149,8 +140,7 @@ class ProductosRecordDocumentEquality implements Equality<ProductosRecord> {
         e?.detalleProducto,
         e?.imagenProducto,
         e?.descripcion,
-        e?.cantidadDisponible,
-        e?.categoria
+        e?.cantidadDisponible
       ]);
 
   @override

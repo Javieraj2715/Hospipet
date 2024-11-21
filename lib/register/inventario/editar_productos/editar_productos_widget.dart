@@ -53,12 +53,6 @@ class _EditarProductosWidgetState extends State<EditarProductosWidget> {
         text: widget.paramProducto?.cantidadDisponible.toString());
     _model.txtCantidadFocusNode ??= FocusNode();
 
-    _model.txtCategoriaTextController ??= TextEditingController(
-        text: (widget.paramProducto?.categoria != null &&
-                (widget.paramProducto?.categoria)!.isNotEmpty)
-            .toString());
-    _model.txtCategoriaFocusNode ??= FocusNode();
-
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -599,109 +593,25 @@ class _EditarProductosWidgetState extends State<EditarProductosWidget> {
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: SizedBox(
-                              width: 200.0,
-                              child: TextFormField(
-                                controller: _model.txtCategoriaTextController,
-                                focusNode: _model.txtCategoriaFocusNode,
-                                autofocus: false,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  isDense: true,
-                                  labelText: 'Categoria',
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  hintStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  filled: true,
-                                  fillColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0.0,
-                                    ),
-                                cursorColor:
-                                    FlutterFlowTheme.of(context).primaryText,
-                                validator: _model
-                                    .txtCategoriaTextControllerValidator
-                                    .asValidator(context),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FFButtonWidget(
                           onPressed: () async {
-                            await widget.paramProducto!.reference.update({
-                              ...createProductosRecordData(
-                                productoId: int.tryParse(
-                                    _model.txtIdTextController.text),
-                                nombreProducto:
-                                    _model.txtNombrePTextController.text,
-                                precioUnitario: double.tryParse(
-                                    _model.txtPrecioTextController.text),
-                                detalleProducto:
-                                    _model.txtDetalleTextController.text,
-                                descripcion:
-                                    _model.txtDescripcionTextController.text,
-                                cantidadDisponible: int.tryParse(
-                                    _model.txtCantidadTextController.text),
-                              ),
-                              ...mapToFirestore(
-                                {
-                                  'CATEGORIA': FieldValue.arrayUnion(
-                                      [_model.txtCategoriaTextController.text]),
-                                },
-                              ),
-                            });
+                            await widget.paramProducto!.reference
+                                .update(createProductosRecordData(
+                              productoId:
+                                  int.tryParse(_model.txtIdTextController.text),
+                              nombreProducto:
+                                  _model.txtNombrePTextController.text,
+                              precioUnitario: double.tryParse(
+                                  _model.txtPrecioTextController.text),
+                              detalleProducto:
+                                  _model.txtDetalleTextController.text,
+                              descripcion:
+                                  _model.txtDescripcionTextController.text,
+                              cantidadDisponible: int.tryParse(
+                                  _model.txtCantidadTextController.text),
+                            ));
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(

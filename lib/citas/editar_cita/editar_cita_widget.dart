@@ -5,36 +5,45 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'nueva_cita_model.dart';
-export 'nueva_cita_model.dart';
+import 'editar_cita_model.dart';
+export 'editar_cita_model.dart';
 
-class NuevaCitaWidget extends StatefulWidget {
-  const NuevaCitaWidget({super.key});
+class EditarCitaWidget extends StatefulWidget {
+  const EditarCitaWidget({
+    super.key,
+    required this.paramCitas,
+  });
+
+  final CitasRecord? paramCitas;
 
   @override
-  State<NuevaCitaWidget> createState() => _NuevaCitaWidgetState();
+  State<EditarCitaWidget> createState() => _EditarCitaWidgetState();
 }
 
-class _NuevaCitaWidgetState extends State<NuevaCitaWidget> {
-  late NuevaCitaModel _model;
+class _EditarCitaWidgetState extends State<EditarCitaWidget> {
+  late EditarCitaModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NuevaCitaModel());
+    _model = createModel(context, () => EditarCitaModel());
 
-    _model.txtNombreDuenoTextController ??= TextEditingController();
+    _model.txtNombreDuenoTextController ??=
+        TextEditingController(text: widget.paramCitas?.nombreDuenno);
     _model.txtNombreDuenoFocusNode ??= FocusNode();
 
-    _model.txtNombreMascotaTextController ??= TextEditingController();
+    _model.txtNombreMascotaTextController ??=
+        TextEditingController(text: widget.paramCitas?.nombreMascota);
     _model.txtNombreMascotaFocusNode ??= FocusNode();
 
-    _model.txtNombreVeterinarioTextController ??= TextEditingController();
+    _model.txtNombreVeterinarioTextController ??=
+        TextEditingController(text: widget.paramCitas?.nombreVeterinario);
     _model.txtNombreVeterinarioFocusNode ??= FocusNode();
 
-    _model.txtNotasAdiconalesTextController ??= TextEditingController();
+    _model.txtNotasAdiconalesTextController ??=
+        TextEditingController(text: widget.paramCitas?.notasAdicionales);
     _model.txtNotasAdiconalesFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -72,7 +81,7 @@ class _NuevaCitaWidgetState extends State<NuevaCitaWidget> {
             ),
           ),
           title: Text(
-            'Nueva cita',
+            'Editar cita',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Inter',
                   color: Colors.black,
@@ -453,8 +462,9 @@ class _NuevaCitaWidgetState extends State<NuevaCitaWidget> {
                                                                         context)
                                                                     .primaryText,
                                                             selectedDateTimeBackgroundColor:
-                                                                const Color(
-                                                                    0xFF7DA296),
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
                                                             selectedDateTimeForegroundColor:
                                                                 FlutterFlowTheme.of(
                                                                         context)
@@ -468,72 +478,8 @@ class _NuevaCitaWidgetState extends State<NuevaCitaWidget> {
                                                         },
                                                       );
 
-                                                      TimeOfDay?
-                                                          datePickedTime;
                                                       if (datePickedDate !=
                                                           null) {
-                                                        datePickedTime =
-                                                            await showTimePicker(
-                                                          context: context,
-                                                          initialTime: TimeOfDay
-                                                              .fromDateTime(
-                                                                  getCurrentTimestamp),
-                                                          builder:
-                                                              (context, child) {
-                                                            return wrapInMaterialTimePickerTheme(
-                                                              context,
-                                                              child!,
-                                                              headerBackgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                              headerForegroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                              headerTextStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineLarge
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Inter',
-                                                                        fontSize:
-                                                                            32.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                      ),
-                                                              pickerBackgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                              pickerForegroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                              selectedDateTimeBackgroundColor:
-                                                                  const Color(
-                                                                      0xFF7DA296),
-                                                              selectedDateTimeForegroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                              actionButtonForegroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                              iconSize: 24.0,
-                                                            );
-                                                          },
-                                                        );
-                                                      }
-
-                                                      if (datePickedDate !=
-                                                              null &&
-                                                          datePickedTime !=
-                                                              null) {
                                                         safeSetState(() {
                                                           _model.datePicked =
                                                               DateTime(
@@ -542,19 +488,16 @@ class _NuevaCitaWidgetState extends State<NuevaCitaWidget> {
                                                             datePickedDate
                                                                 .month,
                                                             datePickedDate.day,
-                                                            datePickedTime!
-                                                                .hour,
-                                                            datePickedTime
-                                                                .minute,
                                                           );
                                                         });
                                                       }
                                                     },
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        dateTimeFormat("yMd",
-                                                            _model.datePicked),
-                                                        'Detalle de la cita:',
+                                                        widget.paramCitas
+                                                            ?.hasFechaHora()
+                                                            .toString(),
+                                                        '0',
                                                       ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -575,7 +518,10 @@ class _NuevaCitaWidgetState extends State<NuevaCitaWidget> {
                                       FlutterFlowDropDown<String>(
                                         controller: _model
                                                 .dropDownTipoServicioValueController ??=
-                                            FormFieldController<String>(null),
+                                            FormFieldController<String>(
+                                          _model.dropDownTipoServicioValue ??=
+                                              widget.paramCitas?.tipoSevicio,
+                                        ),
                                         options: const [
                                           'Vacunación',
                                           'Consulta',
@@ -709,7 +655,7 @@ class _NuevaCitaWidgetState extends State<NuevaCitaWidget> {
                                                         return AlertDialog(
                                                           title: const Text('AVISO'),
                                                           content: const Text(
-                                                              '¿Desea registrar la cita?'),
+                                                              '¿Desea modificar la cita?'),
                                                           actions: [
                                                             TextButton(
                                                               onPressed: () =>
@@ -717,7 +663,7 @@ class _NuevaCitaWidgetState extends State<NuevaCitaWidget> {
                                                                       alertDialogContext,
                                                                       false),
                                                               child: const Text(
-                                                                  'Cancel'),
+                                                                  'Cancelar'),
                                                             ),
                                                             TextButton(
                                                               onPressed: () =>
@@ -725,7 +671,7 @@ class _NuevaCitaWidgetState extends State<NuevaCitaWidget> {
                                                                       alertDialogContext,
                                                                       true),
                                                               child: const Text(
-                                                                  'Confirm'),
+                                                                  'Confirmar'),
                                                             ),
                                                           ],
                                                         );
@@ -733,31 +679,11 @@ class _NuevaCitaWidgetState extends State<NuevaCitaWidget> {
                                                     ) ??
                                                     false;
                                             if (confirmDialogResponse) {
-                                              await CitasRecord.collection
-                                                  .doc()
-                                                  .set(createCitasRecordData(
-                                                    nombreMascota: _model
-                                                        .txtNombreMascotaTextController
-                                                        .text,
-                                                    tipoSevicio: _model
-                                                        .dropDownTipoServicioValue,
-                                                    notasAdicionales: _model
-                                                        .txtNotasAdiconalesTextController
-                                                        .text,
-                                                    nombreDuenno: _model
-                                                        .txtNombreDuenoTextController
-                                                        .text,
-                                                    nombreVeterinario: _model
-                                                        .txtNombreVeterinarioTextController
-                                                        .text,
-                                                    fechaHora:
-                                                        _model.datePicked,
-                                                  ));
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
                                                 SnackBar(
                                                   content: Text(
-                                                    '¡Cita agregada con éxito!',
+                                                    'Cita editada éxitosamente',
                                                     style: TextStyle(
                                                       color:
                                                           FlutterFlowTheme.of(
@@ -773,13 +699,34 @@ class _NuevaCitaWidgetState extends State<NuevaCitaWidget> {
                                                           .secondary,
                                                 ),
                                               );
-                                            } else {
-                                              context.pushNamed('NuevaCita');
-                                            }
 
-                                            context.pushNamed('GestionarCitas');
+                                              await widget
+                                                  .paramCitas!.reference
+                                                  .update(createCitasRecordData(
+                                                nombreMascota: _model
+                                                    .txtNombreMascotaTextController
+                                                    .text,
+                                                tipoSevicio: dateTimeFormat(
+                                                    "d/M h:mm a",
+                                                    _model.datePicked),
+                                                notasAdicionales: _model
+                                                    .txtNotasAdiconalesTextController
+                                                    .text,
+                                                nombreDuenno: _model
+                                                    .txtNombreDuenoTextController
+                                                    .text,
+                                                nombreVeterinario: _model
+                                                    .txtNombreVeterinarioTextController
+                                                    .text,
+                                                fechaHora: _model.datePicked,
+                                              ));
+                                              context.safePop();
+                                            } else {
+                                              context
+                                                  .pushNamed('GestionarCitas');
+                                            }
                                           },
-                                          text: 'Guardar cita',
+                                          text: 'Actualizar cita',
                                           options: FFButtonOptions(
                                             height: 40.0,
                                             padding:

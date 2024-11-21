@@ -1,28 +1,29 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'registro_model.dart';
-export 'registro_model.dart';
+import 'registro_paciente_model.dart';
+export 'registro_paciente_model.dart';
 
-class RegistroWidget extends StatefulWidget {
-  const RegistroWidget({super.key});
+class RegistroPacienteWidget extends StatefulWidget {
+  const RegistroPacienteWidget({super.key});
 
   @override
-  State<RegistroWidget> createState() => _RegistroWidgetState();
+  State<RegistroPacienteWidget> createState() => _RegistroPacienteWidgetState();
 }
 
-class _RegistroWidgetState extends State<RegistroWidget> {
-  late RegistroModel _model;
+class _RegistroPacienteWidgetState extends State<RegistroPacienteWidget> {
+  late RegistroPacienteModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => RegistroModel());
+    _model = createModel(context, () => RegistroPacienteModel());
 
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
@@ -59,9 +60,6 @@ class _RegistroWidgetState extends State<RegistroWidget> {
 
     _model.textController12 ??= TextEditingController();
     _model.textFieldFocusNode12 ??= FocusNode();
-
-    _model.textController13 ??= TextEditingController();
-    _model.textFieldFocusNode13 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -314,67 +312,6 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                   autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Contraseña',
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Color(0xFFE0E0E0),
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  minLines: 1,
-                                  keyboardType: TextInputType.phone,
-                                  validator: _model.textController3Validator
-                                      .asValidator(context),
-                                ),
-                                TextFormField(
-                                  controller: _model.textController4,
-                                  focusNode: _model.textFieldFocusNode4,
-                                  autofocus: false,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
                                     labelText: 'Teléfono',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -428,12 +365,12 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                       ),
                                   minLines: 1,
                                   keyboardType: TextInputType.phone,
-                                  validator: _model.textController4Validator
+                                  validator: _model.textController3Validator
                                       .asValidator(context),
                                 ),
                                 TextFormField(
-                                  controller: _model.textController5,
-                                  focusNode: _model.textFieldFocusNode5,
+                                  controller: _model.textController4,
+                                  focusNode: _model.textFieldFocusNode4,
                                   autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -489,7 +426,7 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                       ),
                                   minLines: 1,
                                   keyboardType: TextInputType.phone,
-                                  validator: _model.textController5Validator
+                                  validator: _model.textController4Validator
                                       .asValidator(context),
                                 ),
                               ].divide(const SizedBox(height: 16.0)),
@@ -537,8 +474,8 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                       ),
                                 ),
                                 TextFormField(
-                                  controller: _model.textController6,
-                                  focusNode: _model.textFieldFocusNode6,
+                                  controller: _model.textController5,
+                                  focusNode: _model.textFieldFocusNode5,
                                   autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -593,7 +530,7 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   minLines: 1,
-                                  validator: _model.textController6Validator
+                                  validator: _model.textController5Validator
                                       .asValidator(context),
                                 ),
                                 Row(
@@ -665,8 +602,8 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                       child: SizedBox(
                                         width: 200.0,
                                         child: TextFormField(
-                                          controller: _model.textController7,
-                                          focusNode: _model.textFieldFocusNode7,
+                                          controller: _model.textController6,
+                                          focusNode: _model.textFieldFocusNode6,
                                           autofocus: false,
                                           obscureText: false,
                                           decoration: InputDecoration(
@@ -738,7 +675,7 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .primaryText,
                                           validator: _model
-                                              .textController7Validator
+                                              .textController6Validator
                                               .asValidator(context),
                                         ),
                                       ),
@@ -746,12 +683,72 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                   ],
                                 ),
                                 TextFormField(
+                                  controller: _model.textController7,
+                                  focusNode: _model.textFieldFocusNode7,
+                                  autofocus: false,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText: 'Raza',
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        color: Color(0xFFE0E0E0),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  minLines: 1,
+                                  validator: _model.textController7Validator
+                                      .asValidator(context),
+                                ),
+                                TextFormField(
                                   controller: _model.textController8,
                                   focusNode: _model.textFieldFocusNode8,
                                   autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Raza',
+                                    labelText: 'Peso',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -811,7 +808,7 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                   autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Peso',
+                                    labelText: 'Sexo',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -865,13 +862,57 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                   validator: _model.textController9Validator
                                       .asValidator(context),
                                 ),
+                              ].divide(const SizedBox(height: 16.0)),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                        child: Container(
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF0F0F0),
+                            boxShadow: const [
+                              BoxShadow(
+                                blurRadius: 4.0,
+                                color: Color(0x33000000),
+                                offset: Offset(
+                                  0.0,
+                                  2.0,
+                                ),
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 20.0, 20.0, 20.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Historial Médico',
+                                  style: FlutterFlowTheme.of(context)
+                                      .headlineSmall
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        color: const Color(0xFF0B191E),
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
                                 TextFormField(
                                   controller: _model.textController10,
                                   focusNode: _model.textFieldFocusNode10,
                                   autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Sexo',
+                                    labelText: 'Alergias Conocidas',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -925,57 +966,13 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                   validator: _model.textController10Validator
                                       .asValidator(context),
                                 ),
-                              ].divide(const SizedBox(height: 16.0)),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                        child: Container(
-                          width: MediaQuery.sizeOf(context).width * 1.0,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFF0F0F0),
-                            boxShadow: const [
-                              BoxShadow(
-                                blurRadius: 4.0,
-                                color: Color(0x33000000),
-                                offset: Offset(
-                                  0.0,
-                                  2.0,
-                                ),
-                              )
-                            ],
-                            borderRadius: BorderRadius.circular(16.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 20.0, 20.0, 20.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  'Historial Médico',
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineSmall
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        color: const Color(0xFF0B191E),
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
                                 TextFormField(
                                   controller: _model.textController11,
                                   focusNode: _model.textFieldFocusNode11,
                                   autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Alergias Conocidas',
+                                    labelText: 'Medicamentos Actuales',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -1035,7 +1032,7 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                   autofocus: false,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Medicamentos Actuales',
+                                    labelText: 'Notas Adicionales',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -1089,66 +1086,6 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                   validator: _model.textController12Validator
                                       .asValidator(context),
                                 ),
-                                TextFormField(
-                                  controller: _model.textController13,
-                                  focusNode: _model.textFieldFocusNode13,
-                                  autofocus: false,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText: 'Notas Adicionales',
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Color(0xFFE0E0E0),
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  minLines: 1,
-                                  validator: _model.textController13Validator
-                                      .asValidator(context),
-                                ),
                               ].divide(const SizedBox(height: 16.0)),
                             ),
                           ),
@@ -1156,7 +1093,48 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                       ),
                       FFButtonWidget(
                         onPressed: () async {
-                          context.pushNamed('Login');
+                          await HistorialMedicoRecord.collection
+                              .doc()
+                              .set(createHistorialMedicoRecordData(
+                                alergias: _model.textController10.text,
+                                medicamentos: _model.textController11.text,
+                                notas: (_model.textFieldFocusNode12?.hasFocus ??
+                                        false)
+                                    .toString(),
+                              ));
+
+                          await MascotaRecord.collection
+                              .doc()
+                              .set(createMascotaRecordData(
+                                nombreMascota: _model.textController5.text,
+                                animal: (_model.textFieldFocusNode5?.hasFocus ??
+                                        false)
+                                    .toString(),
+                                raza: (_model.textFieldFocusNode7?.hasFocus ??
+                                        false)
+                                    .toString(),
+                                peso: double.tryParse(
+                                    _model.textController8.text),
+                                edad: (_model.textFieldFocusNode6?.hasFocus ??
+                                        false)
+                                    .toString(),
+                              ));
+
+                          await ClienteRecord.collection
+                              .doc()
+                              .set(createClienteRecordData(
+                                nombre: (_model.textFieldFocusNode1?.hasFocus ??
+                                        false)
+                                    .toString(),
+                                email: (_model.textFieldFocusNode2?.hasFocus ??
+                                        false)
+                                    .toString(),
+                                telefono:
+                                    int.tryParse(_model.textController3.text),
+                                cedula: (_model.textFieldFocusNode4?.hasFocus ??
+                                        false)
+                                    .toString(),
+                              ));
                         },
                         text: 'Guardar Registro',
                         options: FFButtonOptions(

@@ -31,10 +31,6 @@ class EditarProductosModel extends FlutterFlowModel<EditarProductosWidget> {
   FocusNode? txtCantidadFocusNode;
   TextEditingController? txtCantidadTextController;
   String? Function(BuildContext, String?)? txtCantidadTextControllerValidator;
-  // State field(s) for txtCategoria widget.
-  FocusNode? txtCategoriaFocusNode;
-  TextEditingController? txtCategoriaTextController;
-  String? Function(BuildContext, String?)? txtCategoriaTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -58,8 +54,5 @@ class EditarProductosModel extends FlutterFlowModel<EditarProductosWidget> {
 
     txtCantidadFocusNode?.dispose();
     txtCantidadTextController?.dispose();
-
-    txtCategoriaFocusNode?.dispose();
-    txtCategoriaTextController?.dispose();
   }
 }

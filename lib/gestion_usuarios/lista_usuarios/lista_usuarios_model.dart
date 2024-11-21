@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'gestionar_citas_widget.dart' show GestionarCitasWidget;
+import 'lista_usuarios_widget.dart' show ListaUsuariosWidget;
 import 'package:flutter/material.dart';
 
-class GestionarCitasModel extends FlutterFlowModel<GestionarCitasWidget> {
+class ListaUsuariosModel extends FlutterFlowModel<ListaUsuariosWidget> {
   @override
   void initState(BuildContext context) {}
 

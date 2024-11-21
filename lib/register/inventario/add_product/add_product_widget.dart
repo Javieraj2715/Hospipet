@@ -723,29 +723,23 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        await ProductosRecord.collection.doc().set({
-                          ...createProductosRecordData(
-                            productoId:
-                                int.tryParse(_model.txtIDTextController.text),
-                            nombreProducto: _model.txtNombreTextController.text,
-                            precioUnitario: double.tryParse(
-                                _model.txtPrecioTextController.text),
-                            detalleProducto:
-                                _model.txtDetalleProductoTextController.text,
-                            imagenProducto: _model.uploadedFileUrl,
-                            descripcion:
-                                _model.txtDescripcionTextController.text,
-                            cantidadDisponible: int.tryParse(
-                                _model.txtCantidadTextController.text),
-                          ),
-                          ...mapToFirestore(
-                            {
-                              'CATEGORIA': [
-                                _model.txtCategoriaTextController.text
-                              ],
-                            },
-                          ),
-                        });
+                        await ProductosRecord.collection
+                            .doc()
+                            .set(createProductosRecordData(
+                              productoId:
+                                  int.tryParse(_model.txtIDTextController.text),
+                              nombreProducto:
+                                  _model.txtNombreTextController.text,
+                              precioUnitario: double.tryParse(
+                                  _model.txtPrecioTextController.text),
+                              detalleProducto:
+                                  _model.txtDetalleProductoTextController.text,
+                              imagenProducto: _model.uploadedFileUrl,
+                              descripcion:
+                                  _model.txtDescripcionTextController.text,
+                              cantidadDisponible: int.tryParse(
+                                  _model.txtCantidadTextController.text),
+                            ));
                         safeSetState(() {
                           _model.txtIDTextController?.clear();
                           _model.txtNombreTextController?.clear();

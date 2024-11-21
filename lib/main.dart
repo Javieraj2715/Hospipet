@@ -101,7 +101,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'Inventario';
+  String _currentPageName = 'Index';
   late Widget? _currentPage;
 
   @override
@@ -114,12 +114,13 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'Registro': const RegistroWidget(),
+      'Login': const LoginWidget(),
+      'RegistroPaciente': const RegistroPacienteWidget(),
       'Index': const IndexWidget(),
-      'Inventario': const InventarioWidget(),
       'Carrito': const CarritoWidget(),
-      'GestionarCitas': const GestionarCitasWidget(),
       'NuevaCita': const NuevaCitaWidget(),
+      'ProductsList': const ProductsListWidget(),
+      'crearUsuario': const CrearUsuarioWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -140,6 +141,13 @@ class _NavBarPageState extends State<NavBarPage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
+              Icons.login,
+            ),
+            label: '',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
               Icons.app_registration,
             ),
             label: '',
@@ -155,14 +163,6 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.inventory_sharp,
-              size: 24.0,
-            ),
-            label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               Icons.shopping_cart,
               size: 24.0,
             ),
@@ -171,7 +171,7 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_outlined,
+              Icons.add_box,
               size: 24.0,
             ),
             label: 'Home',
@@ -179,7 +179,15 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_outlined,
+              Icons.list_alt,
+              size: 24.0,
+            ),
+            label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
               size: 24.0,
             ),
             label: 'Home',

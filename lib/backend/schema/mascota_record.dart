@@ -51,6 +51,11 @@ class MascotaRecord extends FirestoreRecord {
   List<String> get sexo => _sexo ?? const [];
   bool hasSexo() => _sexo != null;
 
+  // "EDAD" field.
+  String? _edad;
+  String get edad => _edad ?? '';
+  bool hasEdad() => _edad != null;
+
   void _initializeFields() {
     _animalId = castToType<int>(snapshotData['ANIMAL_ID']);
     _animal = snapshotData['ANIMAL'] as String?;
@@ -59,6 +64,7 @@ class MascotaRecord extends FirestoreRecord {
     _peso = castToType<double>(snapshotData['PESO']);
     _fechaNacimiento = snapshotData['FECHA_NACIMIENTO'] as DateTime?;
     _sexo = getDataList(snapshotData['SEXO']);
+    _edad = snapshotData['EDAD'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -102,6 +108,7 @@ Map<String, dynamic> createMascotaRecordData({
   String? raza,
   double? peso,
   DateTime? fechaNacimiento,
+  String? edad,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -111,6 +118,7 @@ Map<String, dynamic> createMascotaRecordData({
       'RAZA': raza,
       'PESO': peso,
       'FECHA_NACIMIENTO': fechaNacimiento,
+      'EDAD': edad,
     }.withoutNulls,
   );
 
@@ -129,7 +137,8 @@ class MascotaRecordDocumentEquality implements Equality<MascotaRecord> {
         e1?.raza == e2?.raza &&
         e1?.peso == e2?.peso &&
         e1?.fechaNacimiento == e2?.fechaNacimiento &&
-        listEquality.equals(e1?.sexo, e2?.sexo);
+        listEquality.equals(e1?.sexo, e2?.sexo) &&
+        e1?.edad == e2?.edad;
   }
 
   @override
@@ -140,7 +149,8 @@ class MascotaRecordDocumentEquality implements Equality<MascotaRecord> {
         e?.raza,
         e?.peso,
         e?.fechaNacimiento,
-        e?.sexo
+        e?.sexo,
+        e?.edad
       ]);
 
   @override

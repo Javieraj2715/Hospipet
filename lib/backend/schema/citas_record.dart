@@ -15,61 +15,61 @@ class CitasRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "nombre_mascota" field.
+  // "nombreMascota" field.
   String? _nombreMascota;
   String get nombreMascota => _nombreMascota ?? '';
   bool hasNombreMascota() => _nombreMascota != null;
 
-  // "nombre_dueno" field.
-  String? _nombreDueno;
-  String get nombreDueno => _nombreDueno ?? '';
-  bool hasNombreDueno() => _nombreDueno != null;
+  // "tipoSevicio" field.
+  String? _tipoSevicio;
+  String get tipoSevicio => _tipoSevicio ?? '';
+  bool hasTipoSevicio() => _tipoSevicio != null;
 
-  // "fecha" field.
-  DateTime? _fecha;
-  DateTime? get fecha => _fecha;
-  bool hasFecha() => _fecha != null;
-
-  // "hora" field.
-  DateTime? _hora;
-  DateTime? get hora => _hora;
-  bool hasHora() => _hora != null;
-
-  // "nombre_veterinario" field.
-  String? _nombreVeterinario;
-  String get nombreVeterinario => _nombreVeterinario ?? '';
-  bool hasNombreVeterinario() => _nombreVeterinario != null;
-
-  // "tipo_cita" field.
-  String? _tipoCita;
-  String get tipoCita => _tipoCita ?? '';
-  bool hasTipoCita() => _tipoCita != null;
-
-  // "notas_adicionales" field.
+  // "notasAdicionales" field.
   String? _notasAdicionales;
   String get notasAdicionales => _notasAdicionales ?? '';
   bool hasNotasAdicionales() => _notasAdicionales != null;
+
+  // "nombreDuenno" field.
+  String? _nombreDuenno;
+  String get nombreDuenno => _nombreDuenno ?? '';
+  bool hasNombreDuenno() => _nombreDuenno != null;
+
+  // "nombreVeterinario" field.
+  String? _nombreVeterinario;
+  String get nombreVeterinario => _nombreVeterinario ?? '';
+  bool hasNombreVeterinario() => _nombreVeterinario != null;
 
   // "estado" field.
   String? _estado;
   String get estado => _estado ?? '';
   bool hasEstado() => _estado != null;
 
-  // "isAppointmentAvailable" field.
-  bool? _isAppointmentAvailable;
-  bool get isAppointmentAvailable => _isAppointmentAvailable ?? false;
-  bool hasIsAppointmentAvailable() => _isAppointmentAvailable != null;
+  // "estadoSeleccionado" field.
+  String? _estadoSeleccionado;
+  String get estadoSeleccionado => _estadoSeleccionado ?? '';
+  bool hasEstadoSeleccionado() => _estadoSeleccionado != null;
+
+  // "cita_ID" field.
+  int? _citaID;
+  int get citaID => _citaID ?? 0;
+  bool hasCitaID() => _citaID != null;
+
+  // "fecha_hora" field.
+  DateTime? _fechaHora;
+  DateTime? get fechaHora => _fechaHora;
+  bool hasFechaHora() => _fechaHora != null;
 
   void _initializeFields() {
-    _nombreMascota = snapshotData['nombre_mascota'] as String?;
-    _nombreDueno = snapshotData['nombre_dueno'] as String?;
-    _fecha = snapshotData['fecha'] as DateTime?;
-    _hora = snapshotData['hora'] as DateTime?;
-    _nombreVeterinario = snapshotData['nombre_veterinario'] as String?;
-    _tipoCita = snapshotData['tipo_cita'] as String?;
-    _notasAdicionales = snapshotData['notas_adicionales'] as String?;
+    _nombreMascota = snapshotData['nombreMascota'] as String?;
+    _tipoSevicio = snapshotData['tipoSevicio'] as String?;
+    _notasAdicionales = snapshotData['notasAdicionales'] as String?;
+    _nombreDuenno = snapshotData['nombreDuenno'] as String?;
+    _nombreVeterinario = snapshotData['nombreVeterinario'] as String?;
     _estado = snapshotData['estado'] as String?;
-    _isAppointmentAvailable = snapshotData['isAppointmentAvailable'] as bool?;
+    _estadoSeleccionado = snapshotData['estadoSeleccionado'] as String?;
+    _citaID = castToType<int>(snapshotData['cita_ID']);
+    _fechaHora = snapshotData['fecha_hora'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -107,26 +107,26 @@ class CitasRecord extends FirestoreRecord {
 
 Map<String, dynamic> createCitasRecordData({
   String? nombreMascota,
-  String? nombreDueno,
-  DateTime? fecha,
-  DateTime? hora,
-  String? nombreVeterinario,
-  String? tipoCita,
+  String? tipoSevicio,
   String? notasAdicionales,
+  String? nombreDuenno,
+  String? nombreVeterinario,
   String? estado,
-  bool? isAppointmentAvailable,
+  String? estadoSeleccionado,
+  int? citaID,
+  DateTime? fechaHora,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'nombre_mascota': nombreMascota,
-      'nombre_dueno': nombreDueno,
-      'fecha': fecha,
-      'hora': hora,
-      'nombre_veterinario': nombreVeterinario,
-      'tipo_cita': tipoCita,
-      'notas_adicionales': notasAdicionales,
+      'nombreMascota': nombreMascota,
+      'tipoSevicio': tipoSevicio,
+      'notasAdicionales': notasAdicionales,
+      'nombreDuenno': nombreDuenno,
+      'nombreVeterinario': nombreVeterinario,
       'estado': estado,
-      'isAppointmentAvailable': isAppointmentAvailable,
+      'estadoSeleccionado': estadoSeleccionado,
+      'cita_ID': citaID,
+      'fecha_hora': fechaHora,
     }.withoutNulls,
   );
 
@@ -139,27 +139,27 @@ class CitasRecordDocumentEquality implements Equality<CitasRecord> {
   @override
   bool equals(CitasRecord? e1, CitasRecord? e2) {
     return e1?.nombreMascota == e2?.nombreMascota &&
-        e1?.nombreDueno == e2?.nombreDueno &&
-        e1?.fecha == e2?.fecha &&
-        e1?.hora == e2?.hora &&
-        e1?.nombreVeterinario == e2?.nombreVeterinario &&
-        e1?.tipoCita == e2?.tipoCita &&
+        e1?.tipoSevicio == e2?.tipoSevicio &&
         e1?.notasAdicionales == e2?.notasAdicionales &&
+        e1?.nombreDuenno == e2?.nombreDuenno &&
+        e1?.nombreVeterinario == e2?.nombreVeterinario &&
         e1?.estado == e2?.estado &&
-        e1?.isAppointmentAvailable == e2?.isAppointmentAvailable;
+        e1?.estadoSeleccionado == e2?.estadoSeleccionado &&
+        e1?.citaID == e2?.citaID &&
+        e1?.fechaHora == e2?.fechaHora;
   }
 
   @override
   int hash(CitasRecord? e) => const ListEquality().hash([
         e?.nombreMascota,
-        e?.nombreDueno,
-        e?.fecha,
-        e?.hora,
-        e?.nombreVeterinario,
-        e?.tipoCita,
+        e?.tipoSevicio,
         e?.notasAdicionales,
+        e?.nombreDuenno,
+        e?.nombreVeterinario,
         e?.estado,
-        e?.isAppointmentAvailable
+        e?.estadoSeleccionado,
+        e?.citaID,
+        e?.fechaHora
       ]);
 
   @override

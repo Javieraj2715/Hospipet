@@ -74,25 +74,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const ProductsListWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const NavBarPage() : const ProductsListWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
         ),
         FFRoute(
           name: 'Login',
           path: '/login',
-          builder: (context, params) => const LoginWidget(),
+          builder: (context, params) =>
+              params.isEmpty ? const NavBarPage(initialPage: 'Login') : const LoginWidget(),
         ),
         FFRoute(
-          name: 'Registro',
-          path: '/registro',
+          name: 'RegistroPaciente',
+          path: '/registroPaciente',
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'Registro')
-              : const RegistroWidget(),
+              ? const NavBarPage(initialPage: 'RegistroPaciente')
+              : const RegistroPacienteWidget(),
         ),
         FFRoute(
           name: 'Index',
@@ -103,9 +104,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Inventario',
           path: '/inventario',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'Inventario')
-              : const InventarioWidget(),
+          builder: (context, params) => const InventarioWidget(),
         ),
         FFRoute(
           name: 'Carrito',
@@ -117,9 +116,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'GestionarCitas',
           path: '/gestionarCitas',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'GestionarCitas')
-              : const GestionarCitasWidget(),
+          builder: (context, params) => const GestionarCitasWidget(),
         ),
         FFRoute(
           name: 'NuevaCita',
@@ -136,12 +133,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ProductsList',
           path: '/productsList',
-          builder: (context, params) => ProductsListWidget(
-            solD: params.getParam(
-              'solD',
-              ParamType.bool,
-            ),
-          ),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'ProductsList')
+              : ProductsListWidget(
+                  solD: params.getParam(
+                    'solD',
+                    ParamType.bool,
+                  ),
+                ),
         ),
         FFRoute(
           name: 'EditarProductos',
@@ -156,6 +155,41 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.Document,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'EditarCita',
+          path: '/editarCita',
+          asyncParams: {
+            'paramCitas': getDoc(['citas'], CitasRecord.fromSnapshot),
+          },
+          builder: (context, params) => EditarCitaWidget(
+            paramCitas: params.getParam(
+              'paramCitas',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'crearUsuario',
+          path: '/crearUsuario',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'crearUsuario')
+              : const CrearUsuarioWidget(),
+        ),
+        FFRoute(
+          name: 'Perfil',
+          path: '/perfil',
+          builder: (context, params) => const PerfilWidget(),
+        ),
+        FFRoute(
+          name: 'editarPerfil',
+          path: '/editarPerfil',
+          builder: (context, params) => const EditarPerfilWidget(),
+        ),
+        FFRoute(
+          name: 'ListaUsuarios',
+          path: '/listaUsuarios',
+          builder: (context, params) => const ListaUsuariosWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -326,7 +360,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/productsList';
+            return '/login';
           }
           return null;
         },
