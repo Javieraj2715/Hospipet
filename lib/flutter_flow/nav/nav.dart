@@ -74,13 +74,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const ProductsListWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const GestionarCitasWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const NavBarPage() : const ProductsListWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const GestionarCitasWidget(),
         ),
         FFRoute(
           name: 'Login',
@@ -360,7 +360,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/productsList';
+            return '/gestionarCitas';
           }
           return null;
         },
