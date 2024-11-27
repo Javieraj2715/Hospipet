@@ -87,6 +87,7 @@ class _InventarioWidgetState extends State<InventarioWidget> {
         body: SafeArea(
           top: true,
           child: SingleChildScrollView(
+            primary: false,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
