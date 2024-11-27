@@ -13,6 +13,7 @@ import 'schema/proveedores_record.dart';
 import 'schema/citas_record.dart';
 import 'schema/historial_medico_record.dart';
 import 'schema/usuarios_record.dart';
+import 'schema/sub_productos_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -29,6 +30,7 @@ export 'schema/proveedores_record.dart';
 export 'schema/citas_record.dart';
 export 'schema/historial_medico_record.dart';
 export 'schema/usuarios_record.dart';
+export 'schema/sub_productos_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -321,6 +323,43 @@ Future<List<UsuariosRecord>> queryUsuariosRecordOnce({
     queryCollectionOnce(
       UsuariosRecord.collection,
       UsuariosRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query SubProductosRecords (as a Stream and as a Future).
+Future<int> querySubProductosRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      SubProductosRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<SubProductosRecord>> querySubProductosRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      SubProductosRecord.collection,
+      SubProductosRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<SubProductosRecord>> querySubProductosRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      SubProductosRecord.collection,
+      SubProductosRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
