@@ -1,31 +1,32 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'login_model.dart';
-export 'login_model.dart';
+import 'login_pacientes_model.dart';
+export 'login_pacientes_model.dart';
 
-class LoginWidget extends StatefulWidget {
-  const LoginWidget({super.key});
+class LoginPacientesWidget extends StatefulWidget {
+  const LoginPacientesWidget({super.key});
 
   @override
-  State<LoginWidget> createState() => _LoginWidgetState();
+  State<LoginPacientesWidget> createState() => _LoginPacientesWidgetState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
-  late LoginModel _model;
+class _LoginPacientesWidgetState extends State<LoginPacientesWidget> {
+  late LoginPacientesModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => LoginModel());
+    _model = createModel(context, () => LoginPacientesModel());
 
-    _model.textController1 ??= TextEditingController();
+    _model.emailTextController ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -163,7 +164,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         ),
                                   ),
                                   TextFormField(
-                                    controller: _model.textController1,
+                                    controller: _model.emailTextController,
                                     focusNode: _model.textFieldFocusNode1,
                                     autofocus: false,
                                     obscureText: false,
@@ -233,11 +234,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         ),
                                     minLines: 1,
                                     keyboardType: TextInputType.emailAddress,
-                                    validator: _model.textController1Validator
+                                    validator: _model
+                                        .emailTextControllerValidator
                                         .asValidator(context),
                                   ),
                                   TextFormField(
-                                    controller: _model.textController2,
+                                    controller: _model.passwordTextController,
                                     focusNode: _model.textFieldFocusNode2,
                                     autofocus: false,
                                     obscureText: !_model.passwordVisibility,
@@ -321,21 +323,26 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           fontWeight: FontWeight.w500,
                                         ),
                                     minLines: 1,
-                                    validator: _model.textController2Validator
+                                    validator: _model
+                                        .passwordTextControllerValidator
                                         .asValidator(context),
                                   ),
                                   FFButtonWidget(
                                     onPressed: () async {
-                                      context.pushNamed(
-                                        'Index',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                          ),
-                                        },
+                                      GoRouter.of(context).prepareAuthEvent();
+
+                                      final user =
+                                          await authManager.signInWithEmail(
+                                        context,
+                                        _model.emailTextController.text,
+                                        _model.passwordTextController.text,
                                       );
+                                      if (user == null) {
+                                        return;
+                                      }
+
+                                      context.pushNamedAuth(
+                                          'Index', context.mounted);
                                     },
                                     text: 'Login',
                                     options: FFButtonOptions(
@@ -365,17 +372,42 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        '¿Has olvidado tu contraseña?',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Plus Jakarta Sans',
-                                              color: const Color(0xFF4B986C),
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          if (_model.emailTextController.text
+                                              .isEmpty) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                content: Text(
+                                                  'Email required!',
+                                                ),
+                                              ),
+                                            );
+                                            return;
+                                          }
+                                          await authManager.resetPassword(
+                                            email:
+                                                _model.emailTextController.text,
+                                            context: context,
+                                          );
+                                        },
+                                        child: Text(
+                                          '¿Has olvidado tu contraseña?',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Plus Jakarta Sans',
+                                                color: const Color(0xFF4B986C),
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
                                       ),
                                     ],
                                   ),

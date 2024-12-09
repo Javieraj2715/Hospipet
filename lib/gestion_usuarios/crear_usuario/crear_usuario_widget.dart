@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -611,48 +612,41 @@ class _CrearUsuarioWidgetState extends State<CrearUsuarioWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      await UsuariosRecord.collection
-                          .doc()
-                          .set(createUsuariosRecordData(
-                            nombre: _model.txtNombreTextController.text,
-                            email: _model.txtEmailTextController.text,
-                            telefono: int.tryParse(
-                                _model.txtTelefonoTextController.text),
-                            password: _model.txtPasswordTextController.text,
-                            confirmPass:
-                                _model.txtConfirmarPassTextController.text,
-                            imagen: _model.uploadedFileUrl,
-                            idUsuario:
-                                int.tryParse(_model.txtIdTextController.text),
-                          ));
-                      safeSetState(() {
-                        _model.isDataUploading = false;
-                        _model.uploadedLocalFile =
-                            FFUploadedFile(bytes: Uint8List.fromList([]));
-                        _model.uploadedFileUrl = '';
-                      });
-
-                      safeSetState(() {
-                        _model.txtIdTextController?.clear();
-                        _model.txtEmailTextController?.clear();
-                        _model.txtNombreTextController?.clear();
-                        _model.txtTelefonoTextController?.clear();
-                        _model.txtPasswordTextController?.clear();
-                        _model.txtConfirmarPassTextController?.clear();
-                      });
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Usuario Agregado Exitosamente',
-                            style: TextStyle(
-                              color: FlutterFlowTheme.of(context).primaryText,
+                      GoRouter.of(context).prepareAuthEvent();
+                      if (_model.txtPasswordTextController.text !=
+                          _model.txtConfirmarPassTextController.text) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Passwords don\'t match!',
                             ),
                           ),
-                          duration: const Duration(milliseconds: 4000),
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).secondary,
-                        ),
+                        );
+                        return;
+                      }
+
+                      final user = await authManager.createAccountWithEmail(
+                        context,
+                        _model.txtEmailTextController.text,
+                        _model.txtPasswordTextController.text,
                       );
+                      if (user == null) {
+                        return;
+                      }
+
+                      await UsersRecord.collection
+                          .doc(user.uid)
+                          .update(createUsersRecordData(
+                            email: _model.txtEmailTextController.text,
+                            phoneNumber: _model.txtTelefonoTextController.text,
+                            uid: _model.txtIdTextController.text,
+                            userName: _model.txtNombreTextController.text,
+                            displayName: _model.txtNombreTextController.text,
+                            createdTime: getCurrentTimestamp,
+                            photoUrl: _model.uploadedFileUrl,
+                          ));
+
+                      context.goNamedAuth('Index', context.mounted);
                     },
                     text: 'Registrar',
                     options: FFButtonOptions(

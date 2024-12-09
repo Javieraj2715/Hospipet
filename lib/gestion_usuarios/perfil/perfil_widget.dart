@@ -42,6 +42,20 @@ class _PerfilWidgetState extends State<PerfilWidget> {
       appBar: AppBar(
         backgroundColor: const Color(0xFFDCEAC7),
         automaticallyImplyLeading: false,
+        leading: InkWell(
+          splashColor: Colors.transparent,
+          focusColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          onTap: () async {
+            context.safePop();
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: FlutterFlowTheme.of(context).primaryText,
+            size: 24.0,
+          ),
+        ),
         title: Text(
           'Perfil',
           style: FlutterFlowTheme.of(context).labelLarge.override(
@@ -50,7 +64,41 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                 letterSpacing: 0.0,
               ),
         ),
-        actions: const [],
+        actions: [
+          Visibility(
+            visible: valueOrDefault<bool>(currentUserDocument?.isAdmin, false),
+            child: Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: AuthUserStreamWidget(
+                builder: (context) => FFButtonWidget(
+                  onPressed: () async {
+                    context.pushNamed('ListaUsuarios');
+                  },
+                  text: 'Listado de Perfiles',
+                  icon: const Icon(
+                    Icons.location_history_sharp,
+                    size: 16.0,
+                  ),
+                  options: FFButtonOptions(
+                    height: 40.0,
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: const Color(0xFFDCEAC7),
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Readex Pro',
+                          color: const Color(0xFF0D0000),
+                          letterSpacing: 0.0,
+                        ),
+                    elevation: 0.0,
+                    borderRadius: BorderRadius.circular(22.0),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
         centerTitle: false,
         elevation: 0.0,
       ),
@@ -115,7 +163,8 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                           children: [
                             AuthUserStreamWidget(
                               builder: (context) => Text(
-                                currentUserDisplayName,
+                                valueOrDefault(
+                                    currentUserDocument?.userName, ''),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineSmall
                                     .override(
@@ -181,168 +230,130 @@ class _PerfilWidgetState extends State<PerfilWidget> {
             children: [
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                child: Container(
-                  width: double.infinity,
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        blurRadius: 5.0,
-                        color: Color(0x3416202A),
-                        offset: Offset(
-                          0.0,
-                          2.0,
-                        ),
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(12.0),
-                    shape: BoxShape.rectangle,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Cambiar contraseña',
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Plus Jakarta Sans',
-                                  color: const Color(0xFF57636C),
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed('resetPassword');
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 60.0,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                          blurRadius: 5.0,
+                          color: Color(0x3416202A),
+                          offset: Offset(
+                            0.0,
+                            2.0,
                           ),
-                        ),
-                        const Expanded(
-                          child: Align(
-                            alignment: AlignmentDirectional(0.9, 0.0),
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Color(0xFF57636C),
-                              size: 18.0,
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(12.0),
+                      shape: BoxShape.rectangle,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 0.0, 0.0),
+                            child: Text(
+                              'Cambiar contraseña',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Plus Jakarta Sans',
+                                    color: const Color(0xFF57636C),
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                             ),
                           ),
-                        ),
-                      ],
+                          const Expanded(
+                            child: Align(
+                              alignment: AlignmentDirectional(0.9, 0.0),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Color(0xFF57636C),
+                                size: 18.0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(20.0, 12.0, 20.0, 0.0),
-                child: Container(
-                  width: double.infinity,
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        blurRadius: 5.0,
-                        color: Color(0x3416202A),
-                        offset: Offset(
-                          0.0,
-                          2.0,
-                        ),
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(12.0),
-                    shape: BoxShape.rectangle,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Editar Perfil',
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Plus Jakarta Sans',
-                                  color: const Color(0xFF57636C),
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed('editarPerfil');
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 60.0,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                          blurRadius: 5.0,
+                          color: Color(0x3416202A),
+                          offset: Offset(
+                            0.0,
+                            2.0,
                           ),
-                        ),
-                        const Expanded(
-                          child: Align(
-                            alignment: AlignmentDirectional(0.9, 0.0),
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Color(0xFF57636C),
-                              size: 18.0,
-                            ),
-                          ),
-                        ),
+                        )
                       ],
+                      borderRadius: BorderRadius.circular(12.0),
+                      shape: BoxShape.rectangle,
                     ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 12.0, 20.0, 0.0),
-                child: Container(
-                  width: double.infinity,
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        blurRadius: 5.0,
-                        color: Color(0x3416202A),
-                        offset: Offset(
-                          0.0,
-                          2.0,
-                        ),
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(12.0),
-                    shape: BoxShape.rectangle,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Contacto',
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Plus Jakarta Sans',
-                                  color: const Color(0xFF57636C),
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                        ),
-                        const Expanded(
-                          child: Align(
-                            alignment: AlignmentDirectional(0.9, 0.0),
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Color(0xFF57636C),
-                              size: 18.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 0.0, 0.0),
+                            child: Text(
+                              'Editar Perfil',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Plus Jakarta Sans',
+                                    color: const Color(0xFF57636C),
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                             ),
                           ),
-                        ),
-                      ],
+                          const Expanded(
+                            child: Align(
+                              alignment: AlignmentDirectional(0.9, 0.0),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Color(0xFF57636C),
+                                size: 18.0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -354,8 +365,12 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        GoRouter.of(context).prepareAuthEvent();
+                        await authManager.signOut();
+                        GoRouter.of(context).clearRedirectLocation();
+
+                        context.goNamedAuth('LoginPacientes', context.mounted);
                       },
                       text: 'Log Out',
                       options: FFButtonOptions(

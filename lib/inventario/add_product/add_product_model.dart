@@ -17,11 +17,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   FocusNode? txtPrecioFocusNode;
   TextEditingController? txtPrecioTextController;
   String? Function(BuildContext, String?)? txtPrecioTextControllerValidator;
-  // State field(s) for txtDetalleProducto widget.
-  FocusNode? txtDetalleProductoFocusNode;
-  TextEditingController? txtDetalleProductoTextController;
-  String? Function(BuildContext, String?)?
-      txtDetalleProductoTextControllerValidator;
   // State field(s) for txtDescripcion widget.
   FocusNode? txtDescripcionFocusNode;
   TextEditingController? txtDescripcionTextController;
@@ -31,10 +26,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   FocusNode? txtCantidadFocusNode;
   TextEditingController? txtCantidadTextController;
   String? Function(BuildContext, String?)? txtCantidadTextControllerValidator;
-  // State field(s) for txtCategoria widget.
-  FocusNode? txtCategoriaFocusNode;
-  TextEditingController? txtCategoriaTextController;
-  String? Function(BuildContext, String?)? txtCategoriaTextControllerValidator;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -54,16 +45,10 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     txtPrecioFocusNode?.dispose();
     txtPrecioTextController?.dispose();
 
-    txtDetalleProductoFocusNode?.dispose();
-    txtDetalleProductoTextController?.dispose();
-
     txtDescripcionFocusNode?.dispose();
     txtDescripcionTextController?.dispose();
 
     txtCantidadFocusNode?.dispose();
     txtCantidadTextController?.dispose();
-
-    txtCategoriaFocusNode?.dispose();
-    txtCategoriaTextController?.dispose();
   }
 }

@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -69,6 +70,20 @@ class _InventarioWidgetState extends State<InventarioWidget> {
         appBar: AppBar(
           backgroundColor: const Color(0xFFDCEAC7),
           automaticallyImplyLeading: false,
+          leading: InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              context.safePop();
+            },
+            child: Icon(
+              Icons.arrow_back,
+              color: FlutterFlowTheme.of(context).primaryText,
+              size: 24.0,
+            ),
+          ),
           title: Text(
             'Inventario',
             textAlign: TextAlign.start,
@@ -387,23 +402,27 @@ class _InventarioWidgetState extends State<InventarioWidget> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                345.0, 20.0, 0.0, 0.0),
-                            child: FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 8.0,
-                              buttonSize: 40.0,
-                              icon: const Icon(
-                                Icons.delete,
-                                color: Color(0xFF4B986C),
-                                size: 24.0,
+                          if (valueOrDefault<bool>(
+                              currentUserDocument?.isAdmin, false))
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  345.0, 20.0, 0.0, 0.0),
+                              child: AuthUserStreamWidget(
+                                builder: (context) => FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 8.0,
+                                  buttonSize: 40.0,
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    color: Color(0xFF4B986C),
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () {
+                                    print('IconButton pressed ...');
+                                  },
+                                ),
                               ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
                             ),
-                          ),
                         ],
                       ),
                     ],
@@ -505,26 +524,30 @@ class _InventarioWidgetState extends State<InventarioWidget> {
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(11.14, -0.33),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  345.0, 20.0, 0.0, 0.0),
-                              child: FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 8.0,
-                                buttonSize: 40.0,
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Color(0xFF4B986C),
-                                  size: 24.0,
+                          if (valueOrDefault<bool>(
+                              currentUserDocument?.isAdmin, false))
+                            Align(
+                              alignment: const AlignmentDirectional(11.14, -0.33),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    345.0, 20.0, 0.0, 0.0),
+                                child: AuthUserStreamWidget(
+                                  builder: (context) => FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 8.0,
+                                    buttonSize: 40.0,
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      color: Color(0xFF4B986C),
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                    },
+                                  ),
                                 ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
                               ),
                             ),
-                          ),
                         ],
                       ),
                     ],
@@ -613,26 +636,30 @@ class _InventarioWidgetState extends State<InventarioWidget> {
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(4.45, -0.55),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  345.0, 20.0, 0.0, 0.0),
-                              child: FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 8.0,
-                                buttonSize: 40.0,
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Color(0xFF4B986C),
-                                  size: 24.0,
+                          if (valueOrDefault<bool>(
+                              currentUserDocument?.isAdmin, false))
+                            Align(
+                              alignment: const AlignmentDirectional(4.45, -0.55),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    345.0, 20.0, 0.0, 0.0),
+                                child: AuthUserStreamWidget(
+                                  builder: (context) => FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 8.0,
+                                    buttonSize: 40.0,
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      color: Color(0xFF4B986C),
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                    },
+                                  ),
                                 ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
                               ),
                             ),
-                          ),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.network(
@@ -743,26 +770,30 @@ class _InventarioWidgetState extends State<InventarioWidget> {
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(1.1, -1.65),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  345.0, 20.0, 0.0, 0.0),
-                              child: FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 8.0,
-                                buttonSize: 40.0,
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Color(0xFF4B986C),
-                                  size: 24.0,
+                          if (valueOrDefault<bool>(
+                              currentUserDocument?.isAdmin, false))
+                            Align(
+                              alignment: const AlignmentDirectional(1.1, -1.65),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    345.0, 20.0, 0.0, 0.0),
+                                child: AuthUserStreamWidget(
+                                  builder: (context) => FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 8.0,
+                                    buttonSize: 40.0,
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      color: Color(0xFF4B986C),
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                    },
+                                  ),
                                 ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
                               ),
                             ),
-                          ),
                         ],
                       ),
                     ],
@@ -884,26 +915,30 @@ class _InventarioWidgetState extends State<InventarioWidget> {
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(0.83, -1.6),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  345.0, 20.0, 0.0, 0.0),
-                              child: FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 8.0,
-                                buttonSize: 40.0,
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Color(0xFF4B986C),
-                                  size: 24.0,
+                          if (valueOrDefault<bool>(
+                              currentUserDocument?.isAdmin, false))
+                            Align(
+                              alignment: const AlignmentDirectional(0.83, -1.6),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    345.0, 20.0, 0.0, 0.0),
+                                child: AuthUserStreamWidget(
+                                  builder: (context) => FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 8.0,
+                                    buttonSize: 40.0,
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      color: Color(0xFF4B986C),
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                    },
+                                  ),
                                 ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
                               ),
                             ),
-                          ),
                         ],
                       ),
                     ],
@@ -1024,26 +1059,30 @@ class _InventarioWidgetState extends State<InventarioWidget> {
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(1.93, -0.75),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  345.0, 20.0, 0.0, 0.0),
-                              child: FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 8.0,
-                                buttonSize: 40.0,
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Color(0xFF4B986C),
-                                  size: 24.0,
+                          if (valueOrDefault<bool>(
+                              currentUserDocument?.isAdmin, false))
+                            Align(
+                              alignment: const AlignmentDirectional(1.93, -0.75),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    345.0, 20.0, 0.0, 0.0),
+                                child: AuthUserStreamWidget(
+                                  builder: (context) => FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 8.0,
+                                    buttonSize: 40.0,
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      color: Color(0xFF4B986C),
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                    },
+                                  ),
                                 ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
                               ),
                             ),
-                          ),
                         ],
                       ),
                     ],
@@ -1145,26 +1184,30 @@ class _InventarioWidgetState extends State<InventarioWidget> {
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(1.06, -0.7),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  345.0, 20.0, 0.0, 0.0),
-                              child: FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 8.0,
-                                buttonSize: 40.0,
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Color(0xFF4B986C),
-                                  size: 24.0,
+                          if (valueOrDefault<bool>(
+                              currentUserDocument?.isAdmin, false))
+                            Align(
+                              alignment: const AlignmentDirectional(1.06, -0.7),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    345.0, 20.0, 0.0, 0.0),
+                                child: AuthUserStreamWidget(
+                                  builder: (context) => FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 8.0,
+                                    buttonSize: 40.0,
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      color: Color(0xFF4B986C),
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                    },
+                                  ),
                                 ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
                               ),
                             ),
-                          ),
                         ],
                       ),
                     ],
@@ -1266,26 +1309,30 @@ class _InventarioWidgetState extends State<InventarioWidget> {
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(1.59, -0.82),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  345.0, 20.0, 0.0, 0.0),
-                              child: FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 8.0,
-                                buttonSize: 40.0,
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Color(0xFF4B986C),
-                                  size: 24.0,
+                          if (valueOrDefault<bool>(
+                              currentUserDocument?.isAdmin, false))
+                            Align(
+                              alignment: const AlignmentDirectional(1.59, -0.82),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    345.0, 20.0, 0.0, 0.0),
+                                child: AuthUserStreamWidget(
+                                  builder: (context) => FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 8.0,
+                                    buttonSize: 40.0,
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      color: Color(0xFF4B986C),
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                    },
+                                  ),
                                 ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
                               ),
                             ),
-                          ),
                         ],
                       ),
                     ],
@@ -1295,37 +1342,43 @@ class _InventarioWidgetState extends State<InventarioWidget> {
                   thickness: 2.0,
                   color: Color(0xFFD8D8D8),
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FlutterFlowIconButton(
-                        borderRadius: 8.0,
-                        buttonSize: 67.0,
-                        icon: const Icon(
-                          Icons.add_circle_sharp,
-                          color: Color(0xFF4B986C),
-                          size: 40.0,
-                        ),
-                        onPressed: () {
-                          print('IconButton pressed ...');
-                        },
-                      ),
-                      Text(
-                        'Agregar Producto',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              color: const Color(0xFF4B986C),
-                              fontSize: 16.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
+                if (valueOrDefault<bool>(currentUserDocument?.isAdmin, false))
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    child: AuthUserStreamWidget(
+                      builder: (context) => Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FlutterFlowIconButton(
+                            borderRadius: 8.0,
+                            buttonSize: 67.0,
+                            icon: const Icon(
+                              Icons.add_circle_sharp,
+                              color: Color(0xFF4B986C),
+                              size: 40.0,
                             ),
+                            onPressed: () {
+                              print('IconButton pressed ...');
+                            },
+                          ),
+                          Text(
+                            'Agregar Producto',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: const Color(0xFF4B986C),
+                                  fontSize: 16.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
               ],
             ),
           ),

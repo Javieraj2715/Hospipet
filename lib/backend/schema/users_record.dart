@@ -45,20 +45,15 @@ class UsersRecord extends FirestoreRecord {
   String get phoneNumber => _phoneNumber ?? '';
   bool hasPhoneNumber() => _phoneNumber != null;
 
+  // "user_name" field.
+  String? _userName;
+  String get userName => _userName ?? '';
+  bool hasUserName() => _userName != null;
+
   // "isAdmin" field.
   bool? _isAdmin;
   bool get isAdmin => _isAdmin ?? false;
   bool hasIsAdmin() => _isAdmin != null;
-
-  // "password" field.
-  String? _password;
-  String get password => _password ?? '';
-  bool hasPassword() => _password != null;
-
-  // "confirmarPassword" field.
-  String? _confirmarPassword;
-  String get confirmarPassword => _confirmarPassword ?? '';
-  bool hasConfirmarPassword() => _confirmarPassword != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -67,9 +62,8 @@ class UsersRecord extends FirestoreRecord {
     _uid = snapshotData['uid'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
+    _userName = snapshotData['user_name'] as String?;
     _isAdmin = snapshotData['isAdmin'] as bool?;
-    _password = snapshotData['password'] as String?;
-    _confirmarPassword = snapshotData['confirmarPassword'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -112,9 +106,8 @@ Map<String, dynamic> createUsersRecordData({
   String? uid,
   DateTime? createdTime,
   String? phoneNumber,
+  String? userName,
   bool? isAdmin,
-  String? password,
-  String? confirmarPassword,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -124,9 +117,8 @@ Map<String, dynamic> createUsersRecordData({
       'uid': uid,
       'created_time': createdTime,
       'phone_number': phoneNumber,
+      'user_name': userName,
       'isAdmin': isAdmin,
-      'password': password,
-      'confirmarPassword': confirmarPassword,
     }.withoutNulls,
   );
 
@@ -144,9 +136,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
-        e1?.isAdmin == e2?.isAdmin &&
-        e1?.password == e2?.password &&
-        e1?.confirmarPassword == e2?.confirmarPassword;
+        e1?.userName == e2?.userName &&
+        e1?.isAdmin == e2?.isAdmin;
   }
 
   @override
@@ -157,9 +148,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.uid,
         e?.createdTime,
         e?.phoneNumber,
-        e?.isAdmin,
-        e?.password,
-        e?.confirmarPassword
+        e?.userName,
+        e?.isAdmin
       ]);
 
   @override

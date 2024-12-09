@@ -8,7 +8,6 @@ import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -74,19 +73,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const ProductsListWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const LoginPacientesWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const NavBarPage() : const ProductsListWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const LoginPacientesWidget(),
         ),
         FFRoute(
-          name: 'Login',
-          path: '/login',
-          builder: (context, params) =>
-              params.isEmpty ? const NavBarPage(initialPage: 'Login') : const LoginWidget(),
+          name: 'LoginPacientes',
+          path: '/loginPacientes',
+          builder: (context, params) => const LoginPacientesWidget(),
         ),
         FFRoute(
           name: 'RegistroPaciente',
@@ -133,6 +131,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ProductsList',
           path: '/productsList',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'ProductsList')
               : ProductsListWidget(
@@ -172,24 +171,33 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'crearUsuario',
           path: '/crearUsuario',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'crearUsuario')
-              : const CrearUsuarioWidget(),
+          builder: (context, params) => const CrearUsuarioWidget(),
         ),
         FFRoute(
           name: 'Perfil',
           path: '/perfil',
-          builder: (context, params) => const PerfilWidget(),
+          requireAuth: true,
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'Perfil')
+              : const PerfilWidget(),
         ),
         FFRoute(
           name: 'editarPerfil',
           path: '/editarPerfil',
+          requireAuth: true,
           builder: (context, params) => const EditarPerfilWidget(),
         ),
         FFRoute(
           name: 'ListaUsuarios',
           path: '/listaUsuarios',
+          requireAuth: true,
           builder: (context, params) => const ListaUsuariosWidget(),
+        ),
+        FFRoute(
+          name: 'resetPassword',
+          path: '/resetPassword',
+          requireAuth: true,
+          builder: (context, params) => const ResetPasswordWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -360,7 +368,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/productsList';
+            return '/loginPacientes';
           }
           return null;
         },
@@ -374,15 +382,11 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
-                    ),
+              ? Container(
+                  color: Colors.transparent,
+                  child: Image.asset(
+                    'assets/images/WhatsApp_Image_2024-10-16_at_6.04.32_PM.jpeg',
+                    fit: BoxFit.cover,
                   ),
                 )
               : page;

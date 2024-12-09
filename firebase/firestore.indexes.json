@@ -1,3 +1,18 @@
 {
-  "indexes": []
+  "indexes": [
+    {
+      "collectionGroup": "citas",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "cita_ID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "fecha_hora",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
 }

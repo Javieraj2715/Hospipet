@@ -114,13 +114,12 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'Login': const LoginWidget(),
       'RegistroPaciente': const RegistroPacienteWidget(),
       'Index': const IndexWidget(),
       'Carrito': const CarritoWidget(),
       'NuevaCita': const NuevaCitaWidget(),
       'ProductsList': const ProductsListWidget(),
-      'crearUsuario': const CrearUsuarioWidget(),
+      'Perfil': const PerfilWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -141,14 +140,7 @@ class _NavBarPageState extends State<NavBarPage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.login,
-            ),
-            label: '',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.app_registration,
+              Icons.reset_tv,
             ),
             label: '',
             tooltip: '',
@@ -187,10 +179,10 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.person,
+              Icons.account_circle_outlined,
               size: 24.0,
             ),
-            label: 'Home',
+            label: '',
             tooltip: '',
           )
         ],

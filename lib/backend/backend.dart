@@ -5,15 +5,14 @@ import '../auth/firebase_auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'schema/util/firestore_util.dart';
 
-import 'schema/users_record.dart';
 import 'schema/productos_record.dart';
 import 'schema/cliente_record.dart';
 import 'schema/mascota_record.dart';
 import 'schema/proveedores_record.dart';
 import 'schema/citas_record.dart';
 import 'schema/historial_medico_record.dart';
-import 'schema/usuarios_record.dart';
 import 'schema/sub_productos_record.dart';
+import 'schema/users_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -22,52 +21,14 @@ export 'schema/index.dart';
 export 'schema/util/firestore_util.dart';
 export 'schema/util/schema_util.dart';
 
-export 'schema/users_record.dart';
 export 'schema/productos_record.dart';
 export 'schema/cliente_record.dart';
 export 'schema/mascota_record.dart';
 export 'schema/proveedores_record.dart';
 export 'schema/citas_record.dart';
 export 'schema/historial_medico_record.dart';
-export 'schema/usuarios_record.dart';
 export 'schema/sub_productos_record.dart';
-
-/// Functions to query UsersRecords (as a Stream and as a Future).
-Future<int> queryUsersRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      UsersRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<UsersRecord>> queryUsersRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      UsersRecord.collection,
-      UsersRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<UsersRecord>> queryUsersRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      UsersRecord.collection,
-      UsersRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
+export 'schema/users_record.dart';
 
 /// Functions to query ProductosRecords (as a Stream and as a Future).
 Future<int> queryProductosRecordCount({
@@ -291,43 +252,6 @@ Future<List<HistorialMedicoRecord>> queryHistorialMedicoRecordOnce({
       singleRecord: singleRecord,
     );
 
-/// Functions to query UsuariosRecords (as a Stream and as a Future).
-Future<int> queryUsuariosRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      UsuariosRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<UsuariosRecord>> queryUsuariosRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      UsuariosRecord.collection,
-      UsuariosRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<UsuariosRecord>> queryUsuariosRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      UsuariosRecord.collection,
-      UsuariosRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
 /// Functions to query SubProductosRecords (as a Stream and as a Future).
 Future<int> querySubProductosRecordCount({
   Query Function(Query)? queryBuilder,
@@ -360,6 +284,43 @@ Future<List<SubProductosRecord>> querySubProductosRecordOnce({
     queryCollectionOnce(
       SubProductosRecord.collection,
       SubProductosRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query UsersRecords (as a Stream and as a Future).
+Future<int> queryUsersRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      UsersRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<UsersRecord>> queryUsersRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      UsersRecord.collection,
+      UsersRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<UsersRecord>> queryUsersRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      UsersRecord.collection,
+      UsersRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

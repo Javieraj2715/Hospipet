@@ -1,9 +1,11 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import 'package:sticky_headers/sticky_headers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'index_model.dart';
 export 'index_model.dart';
@@ -25,6 +27,11 @@ class _IndexWidgetState extends State<IndexWidget> {
     super.initState();
     _model = createModel(context, () => IndexModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      context.pushNamed('Perfil');
+    });
+
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -44,7 +51,7 @@ class _IndexWidgetState extends State<IndexWidget> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: const Color(0xFFDCEAC7),
+        backgroundColor: const Color(0xFFA9D6BB),
         body: SafeArea(
           top: true,
           child: SingleChildScrollView(
@@ -74,13 +81,22 @@ class _IndexWidgetState extends State<IndexWidget> {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(2.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(50.0),
-                              child: Image.asset(
-                                'assets/images/person-icon.png',
-                                width: 300.0,
-                                height: 200.0,
-                                fit: BoxFit.cover,
+                            child: AuthUserStreamWidget(
+                              builder: (context) => ClipRRect(
+                                borderRadius: BorderRadius.circular(50.0),
+                                child: Image.network(
+                                  currentUserPhoto,
+                                  width: 300.0,
+                                  height: 200.0,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Image.asset(
+                                    'assets/images/error_image.jpeg',
+                                    width: 300.0,
+                                    height: 200.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -117,10 +133,19 @@ class _IndexWidgetState extends State<IndexWidget> {
                           },
                         ),
                       ),
-                      FaIcon(
-                        FontAwesomeIcons.shoppingCart,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed('Carrito');
+                        },
+                        child: FaIcon(
+                          FontAwesomeIcons.shoppingCart,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 24.0,
+                        ),
                       ),
                     ],
                   ),
@@ -131,6 +156,12 @@ class _IndexWidgetState extends State<IndexWidget> {
                     width: double.infinity,
                     height: 80.0,
                     decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: Image.asset(
+                          'assets/images/WhatsApp_Image_2024-10-16_at_6.20.41_PM_(1).jpeg',
+                        ).image,
+                      ),
                       gradient: LinearGradient(
                         colors: [
                           FlutterFlowTheme.of(context).secondaryBackground,
@@ -270,7 +301,14 @@ class _IndexWidgetState extends State<IndexWidget> {
                         child: Container(
                           width: double.infinity,
                           height: 270.0,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: Image.asset(
+                                'assets/images/WhatsApp_Image_2024-10-16_at_6.20.41_PM_(1).jpeg',
+                              ).image,
+                            ),
+                          ),
                           child: ListView(
                             padding: const EdgeInsets.symmetric(horizontal: 16.0),
                             scrollDirection: Axis.horizontal,
@@ -539,6 +577,12 @@ class _IndexWidgetState extends State<IndexWidget> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: Image.asset(
+                              'assets/images/WhatsApp_Image_2024-10-16_at_6.20.41_PM_(1).jpeg',
+                            ).image,
+                          ),
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -723,25 +767,42 @@ class _IndexWidgetState extends State<IndexWidget> {
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 4.0, 0.0, 8.0),
-                                                  child: RichText(
-                                                    textScaler:
-                                                        MediaQuery.of(context)
-                                                            .textScaler,
-                                                    text: TextSpan(
-                                                      children: const [
-                                                        TextSpan(
-                                                          text: 'Agendar cita',
-                                                          style: TextStyle(),
-                                                        )
-                                                      ],
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            letterSpacing: 0.0,
-                                                          ),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                          'NuevaCita');
+                                                    },
+                                                    child: RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: const [
+                                                          TextSpan(
+                                                            text:
+                                                                'Agendar cita',
+                                                            style: TextStyle(),
+                                                          )
+                                                        ],
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -907,25 +968,42 @@ class _IndexWidgetState extends State<IndexWidget> {
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 4.0, 0.0, 8.0),
-                                                  child: RichText(
-                                                    textScaler:
-                                                        MediaQuery.of(context)
-                                                            .textScaler,
-                                                    text: TextSpan(
-                                                      children: const [
-                                                        TextSpan(
-                                                          text: 'Agendar cita',
-                                                          style: TextStyle(),
-                                                        )
-                                                      ],
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            letterSpacing: 0.0,
-                                                          ),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                          'NuevaCita');
+                                                    },
+                                                    child: RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: const [
+                                                          TextSpan(
+                                                            text:
+                                                                'Agendar cita',
+                                                            style: TextStyle(),
+                                                          )
+                                                        ],
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -1091,25 +1169,42 @@ class _IndexWidgetState extends State<IndexWidget> {
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 4.0, 0.0, 8.0),
-                                                  child: RichText(
-                                                    textScaler:
-                                                        MediaQuery.of(context)
-                                                            .textScaler,
-                                                    text: TextSpan(
-                                                      children: const [
-                                                        TextSpan(
-                                                          text: 'Agendar cita',
-                                                          style: TextStyle(),
-                                                        )
-                                                      ],
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            letterSpacing: 0.0,
-                                                          ),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                          'NuevaCita');
+                                                    },
+                                                    child: RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: const [
+                                                          TextSpan(
+                                                            text:
+                                                                'Agendar cita',
+                                                            style: TextStyle(),
+                                                          )
+                                                        ],
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
                                                     ),
                                                   ),
                                                 ),

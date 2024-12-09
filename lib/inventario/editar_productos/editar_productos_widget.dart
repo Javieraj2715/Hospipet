@@ -41,10 +41,6 @@ class _EditarProductosWidgetState extends State<EditarProductosWidget> {
         text: widget.paramProducto?.precioUnitario.toString());
     _model.txtPrecioFocusNode ??= FocusNode();
 
-    _model.txtDetalleTextController ??=
-        TextEditingController(text: widget.paramProducto?.detalleProducto);
-    _model.txtDetalleFocusNode ??= FocusNode();
-
     _model.txtDescripcionTextController ??=
         TextEditingController(text: widget.paramProducto?.descripcion);
     _model.txtDescripcionFocusNode ??= FocusNode();
@@ -369,83 +365,6 @@ class _EditarProductosWidgetState extends State<EditarProductosWidget> {
                             child: SizedBox(
                               width: 200.0,
                               child: TextFormField(
-                                controller: _model.txtDetalleTextController,
-                                focusNode: _model.txtDetalleFocusNode,
-                                autofocus: false,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  isDense: true,
-                                  labelText: 'Detalle',
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  hintStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  filled: true,
-                                  fillColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0.0,
-                                    ),
-                                cursorColor:
-                                    FlutterFlowTheme.of(context).primaryText,
-                                validator: _model
-                                    .txtDetalleTextControllerValidator
-                                    .asValidator(context),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: SizedBox(
-                              width: 200.0,
-                              child: TextFormField(
                                 controller: _model.txtDescripcionTextController,
                                 focusNode: _model.txtDescripcionFocusNode,
                                 autofocus: false,
@@ -605,8 +524,6 @@ class _EditarProductosWidgetState extends State<EditarProductosWidget> {
                                   _model.txtNombrePTextController.text,
                               precioUnitario: double.tryParse(
                                   _model.txtPrecioTextController.text),
-                              detalleProducto:
-                                  _model.txtDetalleTextController.text,
                               descripcion:
                                   _model.txtDescripcionTextController.text,
                               cantidadDisponible: int.tryParse(
