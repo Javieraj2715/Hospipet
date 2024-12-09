@@ -5,24 +5,24 @@ import 'package:flutter/material.dart';
 class EditarPerfilModel extends FlutterFlowModel<EditarPerfilWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for Nombre widget.
-  FocusNode? nombreFocusNode;
-  TextEditingController? nombreTextController;
-  String? Function(BuildContext, String?)? nombreTextControllerValidator;
-  // State field(s) for Contacto widget.
-  FocusNode? contactoFocusNode;
-  TextEditingController? contactoTextController;
-  String? Function(BuildContext, String?)? contactoTextControllerValidator;
+  // State field(s) for txtNombre widget.
+  FocusNode? txtNombreFocusNode;
+  TextEditingController? txtNombreTextController;
+  String? Function(BuildContext, String?)? txtNombreTextControllerValidator;
+  // State field(s) for txtNumero widget.
+  FocusNode? txtNumeroFocusNode;
+  TextEditingController? txtNumeroTextController;
+  String? Function(BuildContext, String?)? txtNumeroTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    nombreFocusNode?.dispose();
-    nombreTextController?.dispose();
+    txtNombreFocusNode?.dispose();
+    txtNombreTextController?.dispose();
 
-    contactoFocusNode?.dispose();
-    contactoTextController?.dispose();
+    txtNumeroFocusNode?.dispose();
+    txtNumeroTextController?.dispose();
   }
 }

@@ -30,11 +30,6 @@ class ProductosRecord extends FirestoreRecord {
   double get precioUnitario => _precioUnitario ?? 0.0;
   bool hasPrecioUnitario() => _precioUnitario != null;
 
-  // "DETALLE_PRODUCTO" field.
-  String? _detalleProducto;
-  String get detalleProducto => _detalleProducto ?? '';
-  bool hasDetalleProducto() => _detalleProducto != null;
-
   // "IMAGEN_PRODUCTO" field.
   String? _imagenProducto;
   String get imagenProducto => _imagenProducto ?? '';
@@ -54,7 +49,6 @@ class ProductosRecord extends FirestoreRecord {
     _productoId = castToType<int>(snapshotData['PRODUCTO_ID']);
     _nombreProducto = snapshotData['NOMBRE_PRODUCTO'] as String?;
     _precioUnitario = castToType<double>(snapshotData['PRECIO_UNITARIO']);
-    _detalleProducto = snapshotData['DETALLE_PRODUCTO'] as String?;
     _imagenProducto = snapshotData['IMAGEN_PRODUCTO'] as String?;
     _descripcion = snapshotData['DESCRIPCION'] as String?;
     _cantidadDisponible = castToType<int>(snapshotData['CANTIDAD_DISPONIBLE']);
@@ -98,7 +92,6 @@ Map<String, dynamic> createProductosRecordData({
   int? productoId,
   String? nombreProducto,
   double? precioUnitario,
-  String? detalleProducto,
   String? imagenProducto,
   String? descripcion,
   int? cantidadDisponible,
@@ -108,7 +101,6 @@ Map<String, dynamic> createProductosRecordData({
       'PRODUCTO_ID': productoId,
       'NOMBRE_PRODUCTO': nombreProducto,
       'PRECIO_UNITARIO': precioUnitario,
-      'DETALLE_PRODUCTO': detalleProducto,
       'IMAGEN_PRODUCTO': imagenProducto,
       'DESCRIPCION': descripcion,
       'CANTIDAD_DISPONIBLE': cantidadDisponible,
@@ -126,7 +118,6 @@ class ProductosRecordDocumentEquality implements Equality<ProductosRecord> {
     return e1?.productoId == e2?.productoId &&
         e1?.nombreProducto == e2?.nombreProducto &&
         e1?.precioUnitario == e2?.precioUnitario &&
-        e1?.detalleProducto == e2?.detalleProducto &&
         e1?.imagenProducto == e2?.imagenProducto &&
         e1?.descripcion == e2?.descripcion &&
         e1?.cantidadDisponible == e2?.cantidadDisponible;
@@ -137,7 +128,6 @@ class ProductosRecordDocumentEquality implements Equality<ProductosRecord> {
         e?.productoId,
         e?.nombreProducto,
         e?.precioUnitario,
-        e?.detalleProducto,
         e?.imagenProducto,
         e?.descripcion,
         e?.cantidadDisponible

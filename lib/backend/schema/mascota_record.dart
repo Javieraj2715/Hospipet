@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -46,15 +45,15 @@ class MascotaRecord extends FirestoreRecord {
   DateTime? get fechaNacimiento => _fechaNacimiento;
   bool hasFechaNacimiento() => _fechaNacimiento != null;
 
-  // "SEXO" field.
-  List<String>? _sexo;
-  List<String> get sexo => _sexo ?? const [];
-  bool hasSexo() => _sexo != null;
-
   // "EDAD" field.
   String? _edad;
   String get edad => _edad ?? '';
   bool hasEdad() => _edad != null;
+
+  // "SEXO" field.
+  String? _sexo;
+  String get sexo => _sexo ?? '';
+  bool hasSexo() => _sexo != null;
 
   void _initializeFields() {
     _animalId = castToType<int>(snapshotData['ANIMAL_ID']);
@@ -63,8 +62,8 @@ class MascotaRecord extends FirestoreRecord {
     _raza = snapshotData['RAZA'] as String?;
     _peso = castToType<double>(snapshotData['PESO']);
     _fechaNacimiento = snapshotData['FECHA_NACIMIENTO'] as DateTime?;
-    _sexo = getDataList(snapshotData['SEXO']);
     _edad = snapshotData['EDAD'] as String?;
+    _sexo = snapshotData['SEXO'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -109,6 +108,7 @@ Map<String, dynamic> createMascotaRecordData({
   double? peso,
   DateTime? fechaNacimiento,
   String? edad,
+  String? sexo,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -119,6 +119,7 @@ Map<String, dynamic> createMascotaRecordData({
       'PESO': peso,
       'FECHA_NACIMIENTO': fechaNacimiento,
       'EDAD': edad,
+      'SEXO': sexo,
     }.withoutNulls,
   );
 
@@ -130,15 +131,14 @@ class MascotaRecordDocumentEquality implements Equality<MascotaRecord> {
 
   @override
   bool equals(MascotaRecord? e1, MascotaRecord? e2) {
-    const listEquality = ListEquality();
     return e1?.animalId == e2?.animalId &&
         e1?.animal == e2?.animal &&
         e1?.nombreMascota == e2?.nombreMascota &&
         e1?.raza == e2?.raza &&
         e1?.peso == e2?.peso &&
         e1?.fechaNacimiento == e2?.fechaNacimiento &&
-        listEquality.equals(e1?.sexo, e2?.sexo) &&
-        e1?.edad == e2?.edad;
+        e1?.edad == e2?.edad &&
+        e1?.sexo == e2?.sexo;
   }
 
   @override
@@ -149,8 +149,8 @@ class MascotaRecordDocumentEquality implements Equality<MascotaRecord> {
         e?.raza,
         e?.peso,
         e?.fechaNacimiento,
-        e?.sexo,
-        e?.edad
+        e?.edad,
+        e?.sexo
       ]);
 
   @override

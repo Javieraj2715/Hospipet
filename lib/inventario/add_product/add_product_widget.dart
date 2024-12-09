@@ -36,17 +36,11 @@ class _AddProductWidgetState extends State<AddProductWidget> {
     _model.txtPrecioTextController ??= TextEditingController();
     _model.txtPrecioFocusNode ??= FocusNode();
 
-    _model.txtDetalleProductoTextController ??= TextEditingController();
-    _model.txtDetalleProductoFocusNode ??= FocusNode();
-
     _model.txtDescripcionTextController ??= TextEditingController();
     _model.txtDescripcionFocusNode ??= FocusNode();
 
     _model.txtCantidadTextController ??= TextEditingController();
     _model.txtCantidadFocusNode ??= FocusNode();
-
-    _model.txtCategoriaTextController ??= TextEditingController();
-    _model.txtCategoriaFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -335,81 +329,6 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       child: SizedBox(
                         width: 200.0,
                         child: TextFormField(
-                          controller: _model.txtDetalleProductoTextController,
-                          focusNode: _model.txtDetalleProductoFocusNode,
-                          autofocus: false,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            labelText: 'DetalleProducto',
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            filled: true,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                          cursorColor: FlutterFlowTheme.of(context).primaryText,
-                          validator: _model
-                              .txtDetalleProductoTextControllerValidator
-                              .asValidator(context),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: SizedBox(
-                        width: 200.0,
-                        child: TextFormField(
                           controller: _model.txtDescripcionTextController,
                           focusNode: _model.txtDescripcionFocusNode,
                           autofocus: false,
@@ -554,80 +473,6 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: SizedBox(
-                        width: 200.0,
-                        child: TextFormField(
-                          controller: _model.txtCategoriaTextController,
-                          focusNode: _model.txtCategoriaFocusNode,
-                          autofocus: false,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            labelText: 'Categoria',
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            filled: true,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                          cursorColor: FlutterFlowTheme.of(context).primaryText,
-                          validator: _model.txtCategoriaTextControllerValidator
-                              .asValidator(context),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     FFButtonWidget(
@@ -732,8 +577,6 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                   _model.txtNombreTextController.text,
                               precioUnitario: double.tryParse(
                                   _model.txtPrecioTextController.text),
-                              detalleProducto:
-                                  _model.txtDetalleProductoTextController.text,
                               imagenProducto: _model.uploadedFileUrl,
                               descripcion:
                                   _model.txtDescripcionTextController.text,
@@ -744,10 +587,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                           _model.txtIDTextController?.clear();
                           _model.txtNombreTextController?.clear();
                           _model.txtPrecioTextController?.clear();
-                          _model.txtDetalleProductoTextController?.clear();
                           _model.txtDescripcionTextController?.clear();
                           _model.txtCantidadTextController?.clear();
-                          _model.txtCategoriaTextController?.clear();
                         });
                         safeSetState(() {
                           _model.isDataUploading = false;

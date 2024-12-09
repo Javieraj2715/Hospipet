@@ -1,18 +1,11 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /users/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if true;
-      allow delete: if true;
-    }
-
     match /productos/{document} {
-      allow create: if true;
+      allow create: if request.auth != null;
       allow read: if true;
-      allow write: if true;
-      allow delete: if true;
+      allow write: if request.auth != null;
+      allow delete: if request.auth != null;
     }
 
     match /cliente/{document} {
@@ -50,18 +43,18 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    match /usuarios/{document} {
+    match /subProductos/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if true;
       allow delete: if true;
     }
 
-    match /subProductos/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if true;
-      allow delete: if true;
+    match /users/{document} {
+      allow create: if request.auth != null;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if request.auth != null;
     }
   }
 }

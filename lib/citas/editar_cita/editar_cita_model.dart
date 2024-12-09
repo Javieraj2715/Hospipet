@@ -7,6 +7,10 @@ class EditarCitaModel extends FlutterFlowModel<EditarCitaWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
+  // State field(s) for txtCitaId widget.
+  FocusNode? txtCitaIdFocusNode;
+  TextEditingController? txtCitaIdTextController;
+  String? Function(BuildContext, String?)? txtCitaIdTextControllerValidator;
   // State field(s) for TxtNombreDueno widget.
   FocusNode? txtNombreDuenoFocusNode;
   TextEditingController? txtNombreDuenoTextController;
@@ -22,7 +26,6 @@ class EditarCitaModel extends FlutterFlowModel<EditarCitaWidget> {
   TextEditingController? txtNombreVeterinarioTextController;
   String? Function(BuildContext, String?)?
       txtNombreVeterinarioTextControllerValidator;
-  DateTime? datePicked;
   // State field(s) for DropDownTipoServicio widget.
   String? dropDownTipoServicioValue;
   FormFieldController<String>? dropDownTipoServicioValueController;
@@ -37,6 +40,9 @@ class EditarCitaModel extends FlutterFlowModel<EditarCitaWidget> {
 
   @override
   void dispose() {
+    txtCitaIdFocusNode?.dispose();
+    txtCitaIdTextController?.dispose();
+
     txtNombreDuenoFocusNode?.dispose();
     txtNombreDuenoTextController?.dispose();
 

@@ -1,37 +1,31 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'editar_perfil_model.dart';
-export 'editar_perfil_model.dart';
+import 'reset_password_model.dart';
+export 'reset_password_model.dart';
 
-class EditarPerfilWidget extends StatefulWidget {
-  const EditarPerfilWidget({super.key});
+class ResetPasswordWidget extends StatefulWidget {
+  const ResetPasswordWidget({super.key});
 
   @override
-  State<EditarPerfilWidget> createState() => _EditarPerfilWidgetState();
+  State<ResetPasswordWidget> createState() => _ResetPasswordWidgetState();
 }
 
-class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
-  late EditarPerfilModel _model;
+class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
+  late ResetPasswordModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EditarPerfilModel());
+    _model = createModel(context, () => ResetPasswordModel());
 
-    _model.txtNombreTextController ??= TextEditingController(
-        text: valueOrDefault(currentUserDocument?.userName, ''));
-    _model.txtNombreFocusNode ??= FocusNode();
-
-    _model.txtNumeroTextController ??=
-        TextEditingController(text: currentPhoneNumber);
-    _model.txtNumeroFocusNode ??= FocusNode();
+    _model.txtPasswordTextController ??= TextEditingController();
+    _model.txtPasswordFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -66,7 +60,7 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
           ),
         ),
         title: Text(
-          'Editar perfil',
+          'Cambiar Contraseña',
           style: FlutterFlowTheme.of(context).labelLarge.override(
                 fontFamily: 'Readex Pro',
                 fontSize: 25.0,
@@ -207,134 +201,74 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                 alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: AuthUserStreamWidget(
-                    builder: (context) => SizedBox(
-                      width: 200.0,
-                      child: TextFormField(
-                        controller: _model.txtNombreTextController,
-                        focusNode: _model.txtNombreFocusNode,
-                        autofocus: false,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          labelText: 'Nombre',
-                          labelStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0xFF86C2AA),
-                                    letterSpacing: 0.0,
-                                  ),
-                          hintText: 'Nombre',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color(0xFF86C2AA),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
+                  child: SizedBox(
+                    width: 200.0,
+                    child: TextFormField(
+                      controller: _model.txtPasswordTextController,
+                      focusNode: _model.txtPasswordFocusNode,
+                      autofocus: false,
+                      obscureText: !_model.txtPasswordVisibility,
+                      decoration: InputDecoration(
+                        isDense: true,
+                        labelText: 'Contraseña',
+                        labelStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Readex Pro',
+                                  color: const Color(0xFF86C2AA),
+                                  letterSpacing: 0.0,
+                                ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Color(0xFF86C2AA),
+                            width: 1.0,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          filled: true,
-                          fillColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0.0,
-                            ),
-                        cursorColor: FlutterFlowTheme.of(context).primaryText,
-                        validator: _model.txtNombreTextControllerValidator
-                            .asValidator(context),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: AuthUserStreamWidget(
-                    builder: (context) => SizedBox(
-                      width: 200.0,
-                      child: TextFormField(
-                        controller: _model.txtNumeroTextController,
-                        focusNode: _model.txtNumeroFocusNode,
-                        autofocus: false,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          labelText: 'Contacto',
-                          labelStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0xFF86C2AA),
-                                    letterSpacing: 0.0,
-                                  ),
-                          hintStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color(0xFF86C2AA),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Color(0x00000000),
+                            width: 1.0,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          filled: true,
-                          fillColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0.0,
-                            ),
-                        cursorColor: FlutterFlowTheme.of(context).primaryText,
-                        validator: _model.txtNumeroTextControllerValidator
-                            .asValidator(context),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Color(0x00000000),
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Color(0x00000000),
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        filled: true,
+                        fillColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        suffixIcon: InkWell(
+                          onTap: () => safeSetState(
+                            () => _model.txtPasswordVisibility =
+                                !_model.txtPasswordVisibility,
+                          ),
+                          focusNode: FocusNode(skipTraversal: true),
+                          child: Icon(
+                            _model.txtPasswordVisibility
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined,
+                            size: 22,
+                          ),
+                        ),
                       ),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            letterSpacing: 0.0,
+                          ),
+                      cursorColor: FlutterFlowTheme.of(context).primaryText,
+                      validator: _model.txtPasswordTextControllerValidator
+                          .asValidator(context),
                     ),
                   ),
                 ),
@@ -343,28 +277,17 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    await currentUserReference!.update(createUsersRecordData(
-                      phoneNumber: _model.txtNumeroTextController.text,
-                      userName: _model.txtNombreTextController.text,
-                    ));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Usuario Actualizado Correctamente',
-                          style: TextStyle(
-                            color: FlutterFlowTheme.of(context).primaryText,
-                          ),
-                        ),
-                        duration: const Duration(milliseconds: 4000),
-                        backgroundColor: FlutterFlowTheme.of(context).secondary,
-                      ),
+                    await authManager.updatePassword(
+                      newPassword: _model.txtPasswordTextController.text,
+                      context: context,
                     );
+                    safeSetState(() {});
 
-                    context.pushNamed('Perfil');
+                    context.goNamedAuth('Index', context.mounted);
                   },
                   text: 'Actualizar',
                   options: FFButtonOptions(
-                    width: 90.0,
+                    width: 97.0,
                     height: 40.0,
                     padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:

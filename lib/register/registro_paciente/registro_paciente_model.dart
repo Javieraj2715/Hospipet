@@ -1,105 +1,243 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
 import 'registro_paciente_widget.dart' show RegistroPacienteWidget;
 import 'package:flutter/material.dart';
 
 class RegistroPacienteModel extends FlutterFlowModel<RegistroPacienteWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode5;
-  TextEditingController? textController5;
-  String? Function(BuildContext, String?)? textController5Validator;
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController;
-  String? get choiceChipsValue =>
-      choiceChipsValueController?.value?.firstOrNull;
-  set choiceChipsValue(String? val) =>
-      choiceChipsValueController?.value = val != null ? [val] : [];
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode6;
-  TextEditingController? textController6;
-  String? Function(BuildContext, String?)? textController6Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode7;
-  TextEditingController? textController7;
-  String? Function(BuildContext, String?)? textController7Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode8;
-  TextEditingController? textController8;
-  String? Function(BuildContext, String?)? textController8Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode9;
-  TextEditingController? textController9;
-  String? Function(BuildContext, String?)? textController9Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode10;
-  TextEditingController? textController10;
-  String? Function(BuildContext, String?)? textController10Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode11;
-  TextEditingController? textController11;
-  String? Function(BuildContext, String?)? textController11Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode12;
-  TextEditingController? textController12;
-  String? Function(BuildContext, String?)? textController12Validator;
+  final formKey = GlobalKey<FormState>();
+  // State field(s) for txtNombreCliente widget.
+  FocusNode? txtNombreClienteFocusNode;
+  TextEditingController? txtNombreClienteTextController;
+  String? Function(BuildContext, String?)?
+      txtNombreClienteTextControllerValidator;
+  String? _txtNombreClienteTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for txtEmail widget.
+  FocusNode? txtEmailFocusNode;
+  TextEditingController? txtEmailTextController;
+  String? Function(BuildContext, String?)? txtEmailTextControllerValidator;
+  String? _txtEmailTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
+      return 'Has to be a valid email address.';
+    }
+    return null;
+  }
+
+  // State field(s) for txtTelefono widget.
+  FocusNode? txtTelefonoFocusNode;
+  TextEditingController? txtTelefonoTextController;
+  String? Function(BuildContext, String?)? txtTelefonoTextControllerValidator;
+  String? _txtTelefonoTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for txtCedula widget.
+  FocusNode? txtCedulaFocusNode;
+  TextEditingController? txtCedulaTextController;
+  String? Function(BuildContext, String?)? txtCedulaTextControllerValidator;
+  String? _txtCedulaTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for txtNombreMascota widget.
+  FocusNode? txtNombreMascotaFocusNode1;
+  TextEditingController? txtNombreMascotaTextController1;
+  String? Function(BuildContext, String?)?
+      txtNombreMascotaTextController1Validator;
+  String? _txtNombreMascotaTextController1Validator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for txtNombreMascota widget.
+  FocusNode? txtNombreMascotaFocusNode2;
+  TextEditingController? txtNombreMascotaTextController2;
+  String? Function(BuildContext, String?)?
+      txtNombreMascotaTextController2Validator;
+  String? _txtNombreMascotaTextController2Validator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for txtNombreMascota widget.
+  FocusNode? txtNombreMascotaFocusNode3;
+  TextEditingController? txtNombreMascotaTextController3;
+  String? Function(BuildContext, String?)?
+      txtNombreMascotaTextController3Validator;
+  String? _txtNombreMascotaTextController3Validator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for txtRaza widget.
+  FocusNode? txtRazaFocusNode;
+  TextEditingController? txtRazaTextController;
+  String? Function(BuildContext, String?)? txtRazaTextControllerValidator;
+  String? _txtRazaTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for txtPeso widget.
+  FocusNode? txtPesoFocusNode;
+  TextEditingController? txtPesoTextController;
+  String? Function(BuildContext, String?)? txtPesoTextControllerValidator;
+  String? _txtPesoTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for txtSexo widget.
+  FocusNode? txtSexoFocusNode;
+  TextEditingController? txtSexoTextController;
+  String? Function(BuildContext, String?)? txtSexoTextControllerValidator;
+  String? _txtSexoTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for txtAlergias widget.
+  FocusNode? txtAlergiasFocusNode;
+  TextEditingController? txtAlergiasTextController;
+  String? Function(BuildContext, String?)? txtAlergiasTextControllerValidator;
+  String? _txtAlergiasTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for txtMedicamentos widget.
+  FocusNode? txtMedicamentosFocusNode;
+  TextEditingController? txtMedicamentosTextController;
+  String? Function(BuildContext, String?)?
+      txtMedicamentosTextControllerValidator;
+  String? _txtMedicamentosTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for txtNotas widget.
+  FocusNode? txtNotasFocusNode;
+  TextEditingController? txtNotasTextController;
+  String? Function(BuildContext, String?)? txtNotasTextControllerValidator;
+  String? _txtNotasTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    txtNombreClienteTextControllerValidator =
+        _txtNombreClienteTextControllerValidator;
+    txtEmailTextControllerValidator = _txtEmailTextControllerValidator;
+    txtTelefonoTextControllerValidator = _txtTelefonoTextControllerValidator;
+    txtCedulaTextControllerValidator = _txtCedulaTextControllerValidator;
+    txtNombreMascotaTextController1Validator =
+        _txtNombreMascotaTextController1Validator;
+    txtNombreMascotaTextController2Validator =
+        _txtNombreMascotaTextController2Validator;
+    txtNombreMascotaTextController3Validator =
+        _txtNombreMascotaTextController3Validator;
+    txtRazaTextControllerValidator = _txtRazaTextControllerValidator;
+    txtPesoTextControllerValidator = _txtPesoTextControllerValidator;
+    txtSexoTextControllerValidator = _txtSexoTextControllerValidator;
+    txtAlergiasTextControllerValidator = _txtAlergiasTextControllerValidator;
+    txtMedicamentosTextControllerValidator =
+        _txtMedicamentosTextControllerValidator;
+    txtNotasTextControllerValidator = _txtNotasTextControllerValidator;
+  }
 
   @override
   void dispose() {
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    txtNombreClienteFocusNode?.dispose();
+    txtNombreClienteTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    txtEmailFocusNode?.dispose();
+    txtEmailTextController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    txtTelefonoFocusNode?.dispose();
+    txtTelefonoTextController?.dispose();
 
-    textFieldFocusNode4?.dispose();
-    textController4?.dispose();
+    txtCedulaFocusNode?.dispose();
+    txtCedulaTextController?.dispose();
 
-    textFieldFocusNode5?.dispose();
-    textController5?.dispose();
+    txtNombreMascotaFocusNode1?.dispose();
+    txtNombreMascotaTextController1?.dispose();
 
-    textFieldFocusNode6?.dispose();
-    textController6?.dispose();
+    txtNombreMascotaFocusNode2?.dispose();
+    txtNombreMascotaTextController2?.dispose();
 
-    textFieldFocusNode7?.dispose();
-    textController7?.dispose();
+    txtNombreMascotaFocusNode3?.dispose();
+    txtNombreMascotaTextController3?.dispose();
 
-    textFieldFocusNode8?.dispose();
-    textController8?.dispose();
+    txtRazaFocusNode?.dispose();
+    txtRazaTextController?.dispose();
 
-    textFieldFocusNode9?.dispose();
-    textController9?.dispose();
+    txtPesoFocusNode?.dispose();
+    txtPesoTextController?.dispose();
 
-    textFieldFocusNode10?.dispose();
-    textController10?.dispose();
+    txtSexoFocusNode?.dispose();
+    txtSexoTextController?.dispose();
 
-    textFieldFocusNode11?.dispose();
-    textController11?.dispose();
+    txtAlergiasFocusNode?.dispose();
+    txtAlergiasTextController?.dispose();
 
-    textFieldFocusNode12?.dispose();
-    textController12?.dispose();
+    txtMedicamentosFocusNode?.dispose();
+    txtMedicamentosTextController?.dispose();
+
+    txtNotasFocusNode?.dispose();
+    txtNotasTextController?.dispose();
   }
 }
