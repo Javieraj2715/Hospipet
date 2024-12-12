@@ -107,9 +107,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Carrito',
           path: '/carrito',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'Carrito')
-              : const CarritoWidget(),
+          builder: (context, params) => const CarritoWidget(),
         ),
         FFRoute(
           name: 'GestionarCitas',
@@ -213,11 +211,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'EditarExpediente',
           path: '/editarExpediente',
           asyncParams: {
-            'paramCitas': getDoc(['citas'], CitasRecord.fromSnapshot),
+            'paramExpediente': getDoc(['Uniones'], UnionesRecord.fromSnapshot),
           },
           builder: (context, params) => EditarExpedienteWidget(
-            paramCitas: params.getParam(
-              'paramCitas',
+            paramExpediente: params.getParam(
+              'paramExpediente',
               ParamType.Document,
             ),
           ),

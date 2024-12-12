@@ -1,12 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'carrito_widget.dart' show CarritoWidget;
+import 'comprado_widget.dart' show CompradoWidget;
 import 'package:flutter/material.dart';
 
-class CarritoModel extends FlutterFlowModel<CarritoWidget> {
-  ///  Local state fields for this page.
-
-  double? totalCarrito;
-
+class CompradoModel extends FlutterFlowModel<CompradoWidget> {
   @override
   void initState(BuildContext context) {}
 

@@ -130,6 +130,20 @@ class _IndexWidgetState extends State<IndexWidget> {
                               ),
                         ),
                       ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.goNamed('Perfil');
+                        },
+                        child: Icon(
+                          Icons.person,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 24.0,
+                        ),
+                      ),
                       Padding(
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
