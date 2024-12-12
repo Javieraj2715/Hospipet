@@ -198,6 +198,29 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/resetPassword',
           requireAuth: true,
           builder: (context, params) => const ResetPasswordWidget(),
+        ),
+        FFRoute(
+          name: 'Expediente',
+          path: '/expediente',
+          builder: (context, params) => const ExpedienteWidget(),
+        ),
+        FFRoute(
+          name: 'Tarjetas',
+          path: '/tarjetas',
+          builder: (context, params) => const TarjetasWidget(),
+        ),
+        FFRoute(
+          name: 'EditarExpediente',
+          path: '/editarExpediente',
+          asyncParams: {
+            'paramCitas': getDoc(['citas'], CitasRecord.fromSnapshot),
+          },
+          builder: (context, params) => EditarExpedienteWidget(
+            paramCitas: params.getParam(
+              'paramCitas',
+              ParamType.Document,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -47,7 +47,10 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFFFAFFF6),
@@ -346,7 +349,10 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: StreamBuilder<List<ProductosRecord>>(
-                    stream: queryProductosRecord(),
+                    stream: queryProductosRecord(
+                      queryBuilder: (productosRecord) =>
+                          productosRecord.orderBy('PRODUCTO_ID'),
+                    ),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -467,6 +473,27 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
                                           ),
                                         ],
                                       ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Text(
+                                            formatNumber(
+                                              listViewProductosRecord
+                                                  .precioUnitario,
+                                              formatType: FormatType.decimal,
+                                              decimalType:
+                                                  DecimalType.automatic,
+                                              currency: '₡',
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -501,19 +528,33 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
                                                 size: 15.0,
                                               ),
                                               onPressed: () async {
-                                                await SubProductosRecord
-                                                    .collection
-                                                    .doc()
+                                                var subProductosRecordReference =
+                                                    SubProductosRecord
+                                                        .collection
+                                                        .doc();
+                                                await subProductosRecordReference
                                                     .set(
                                                         createSubProductosRecordData(
-                                                      producto:
-                                                          listViewProductosRecord
-                                                              .reference,
-                                                      cantidad: 1,
-                                                      subTotal:
-                                                          listViewProductosRecord
-                                                              .precioUnitario,
-                                                    ));
+                                                  producto:
+                                                      listViewProductosRecord
+                                                          .reference,
+                                                  cantidad: 1,
+                                                  subTotal:
+                                                      listViewProductosRecord
+                                                          .precioUnitario,
+                                                ));
+                                                _model.subproducto = SubProductosRecord
+                                                    .getDocumentFromData(
+                                                        createSubProductosRecordData(
+                                                          producto:
+                                                              listViewProductosRecord
+                                                                  .reference,
+                                                          cantidad: 1,
+                                                          subTotal:
+                                                              listViewProductosRecord
+                                                                  .precioUnitario,
+                                                        ),
+                                                        subProductosRecordReference);
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
                                                   SnackBar(
@@ -534,6 +575,8 @@ class _ProductsListWidgetState extends State<ProductsListWidget> {
                                                             .secondary,
                                                   ),
                                                 );
+
+                                                safeSetState(() {});
                                               },
                                             ),
                                           ),

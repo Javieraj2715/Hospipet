@@ -35,6 +35,7 @@ double totalList(List<double> subTotal) {
   for (double add in subTotal) {
     total += add;
   }
+
   return total;
 }
 
@@ -43,4 +44,18 @@ double calcularSubtotal(
   int cantidad,
 ) {
   return precio * cantidad;
+}
+
+bool isCartEmpty(double total) {
+  return total == 0;
+}
+
+String getLast4Digits(String cardNumber) {
+// Elimina los espacios en blanco por si el número incluye separadores
+  String sanitized = cardNumber.replaceAll(' ', '');
+  // Verifica que el número tiene al menos 4 dígitos
+  if (sanitized.length >= 4) {
+    return sanitized.substring(sanitized.length - 4);
+  }
+  return '0000'; // Valor por defecto si el número no es válido
 }

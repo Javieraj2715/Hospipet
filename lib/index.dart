@@ -24,3 +24,7 @@ export '/gestion_usuarios/lista_usuarios/lista_usuarios_widget.dart'
     show ListaUsuariosWidget;
 export '/gestion_usuarios/reset_password/reset_password_widget.dart'
     show ResetPasswordWidget;
+export '/register/expediente/expediente_widget.dart' show ExpedienteWidget;
+export '/carrito_de_compras/tarjetas/tarjetas_widget.dart' show TarjetasWidget;
+export '/register/editar_expediente/editar_expediente_widget.dart'
+    show EditarExpedienteWidget;
