@@ -48,7 +48,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
           hoverColor: Colors.transparent,
           highlightColor: Colors.transparent,
           onTap: () async {
-            context.safePop();
+            context.pop();
           },
           child: Icon(
             Icons.arrow_back,
@@ -396,6 +396,74 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                         ),
                       ),
                     ),
+                    if (valueOrDefault<bool>(
+                        currentUserDocument?.isAdmin, false))
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: AuthUserStreamWidget(
+                          builder: (context) => FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed('GestionarCitas');
+                            },
+                            text: 'Citas',
+                            options: FFButtonOptions(
+                              width: 90.0,
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).alternate,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: const Color(0xFF14181B),
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                              elevation: 1.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    if (valueOrDefault<bool>(
+                        currentUserDocument?.isAdmin, false))
+                      AuthUserStreamWidget(
+                        builder: (context) => FFButtonWidget(
+                          onPressed: () async {
+                            context.pushNamed('Expediente');
+                          },
+                          text: 'Expedientes',
+                          options: FFButtonOptions(
+                            width: 90.0,
+                            height: 40.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).alternate,
+                            textStyle:
+                                FlutterFlowTheme.of(context).bodySmall.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: const Color(0xFF14181B),
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                            elevation: 1.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),

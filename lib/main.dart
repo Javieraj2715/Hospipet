@@ -123,7 +123,6 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'RegistroPaciente': const RegistroPacienteWidget(),
       'Index': const IndexWidget(),
-      'Carrito': const CarritoWidget(),
       'NuevaCita': const NuevaCitaWidget(),
       'ProductsList': const ProductsListWidget(),
       'Perfil': const PerfilWidget(),
@@ -147,7 +146,7 @@ class _NavBarPageState extends State<NavBarPage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.reset_tv,
+              Icons.receipt,
             ),
             label: '',
             tooltip: '',
@@ -155,14 +154,6 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home_outlined,
-              size: 24.0,
-            ),
-            label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.shopping_cart,
               size: 24.0,
             ),
             label: 'Home',

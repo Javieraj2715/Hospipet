@@ -345,6 +345,17 @@ class _GestionarCitasWidgetState extends State<GestionarCitasWidget> {
                                                       ),
                                                 ),
                                                 Text(
+                                                  'Nombre de la mascota:',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                Text(
                                                   'Tipo de Servicio:',
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -424,6 +435,18 @@ class _GestionarCitasWidgetState extends State<GestionarCitasWidget> {
                                                 Text(
                                                   listViewCitasRecord
                                                       .nombreDuenno,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  listViewCitasRecord
+                                                      .nombreMascota,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium

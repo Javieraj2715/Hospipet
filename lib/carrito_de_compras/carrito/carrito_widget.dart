@@ -1,12 +1,13 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/comprado_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'carrito_model.dart';
 export 'carrito_model.dart';
@@ -138,8 +139,8 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.network(
                             'https://cdn-icons-png.flaticon.com/512/2762/2762885.png',
-                            width: 200.0,
-                            height: 200.0,
+                            width: 318.0,
+                            height: 305.0,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -486,26 +487,23 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                         },
                       ),
                     ),
-                    Text(
-                      'Tarjeta seleccionada: ${FFAppState().selectedCard.toString()}',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
-                            letterSpacing: 0.0,
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Align(
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: Text(
+                            'Seleccione la tarjeta Disponible:\n',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
-                    ),
-                    InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        context.pushNamed('Tarjetas');
-                      },
-                      child: FaIcon(
-                        FontAwesomeIcons.creditCard,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
-                      ),
+                        ),
+                      ],
                     ),
                     StreamBuilder<List<TarjetasRecord>>(
                       stream: queryTarjetasRecord(
@@ -583,7 +581,7 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                                             ),
                                             duration:
                                                 const Duration(milliseconds: 4000),
-                                            backgroundColor: const Color(0xFFFF0404),
+                                            backgroundColor: const Color(0xFFC32121),
                                           ),
                                         );
                                       },
@@ -634,6 +632,33 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                         );
                       },
                     ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed('Tarjetas');
+                          },
+                          child: Text(
+                            'Agregar Tarjeta Débito/Crédito',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: const Color(0x9C1A2663),
+                                  letterSpacing: 0.0,
+                                  fontStyle: FontStyle.italic,
+                                  decoration: TextDecoration.underline,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
                     if (carritoSubProductosRecordList.isNotEmpty)
                       Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -676,110 +701,164 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                                 List<SubProductosRecord>
                                     textSubProductosRecordList = snapshot.data!;
 
-                                return Text(
-                                  formatNumber(
-                                    functions.totalList(
+                                return InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    _model.totalCarrito = functions.totalList(
                                         textSubProductosRecordList
                                             .map((e) => e.subTotal)
-                                            .toList()),
-                                    formatType: FormatType.decimal,
-                                    decimalType: DecimalType.commaDecimal,
-                                    currency: '₡',
+                                            .toList());
+                                    safeSetState(() {});
+                                  },
+                                  child: Text(
+                                    formatNumber(
+                                      functions.totalList(
+                                          textSubProductosRecordList
+                                              .map((e) => e.subTotal)
+                                              .toList()),
+                                      formatType: FormatType.decimal,
+                                      decimalType: DecimalType.commaDecimal,
+                                      currency: '₡',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
                                 );
                               },
                             ),
                           ],
                         ),
                       ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        if (carritoSubProductosRecordList.isNotEmpty)
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: StreamBuilder<List<TarjetasRecord>>(
-                                stream: queryTarjetasRecord(
-                                  singleRecord: true,
-                                ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          if (carritoSubProductosRecordList.isNotEmpty)
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: StreamBuilder<List<TarjetasRecord>>(
+                                  stream: queryTarjetasRecord(
+                                    queryBuilder: (tarjetasRecord) =>
+                                        tarjetasRecord.where(
+                                      'nombreTitular',
+                                      isEqualTo: getJsonField(
+                                        FFAppState().selectedCard,
+                                        r'''$.nombreTitular''',
+                                      ).toString(),
+                                    ),
+                                    singleRecord: true,
+                                  ),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                            ),
                                           ),
                                         ),
+                                      );
+                                    }
+                                    List<TarjetasRecord>
+                                        btnPagarTarjetasRecordList =
+                                        snapshot.data!;
+                                    // Return an empty Container when the item does not exist.
+                                    if (snapshot.data!.isEmpty) {
+                                      return Container();
+                                    }
+                                    final btnPagarTarjetasRecord =
+                                        btnPagarTarjetasRecordList.isNotEmpty
+                                            ? btnPagarTarjetasRecordList.first
+                                            : null;
+
+                                    return FFButtonWidget(
+                                      onPressed: () async {
+                                        if (getJsonField(
+                                              FFAppState().selectedCard,
+                                              r'''$.docRef''',
+                                            ) !=
+                                            null) {
+                                          await PagosRecord.collection
+                                              .doc()
+                                              .set(createPagosRecordData(
+                                                userId: currentUserUid,
+                                                monto: _model.totalCarrito,
+                                                fechaPago: getCurrentTimestamp,
+                                                tarjeta: btnPagarTarjetasRecord
+                                                    ?.reference,
+                                              ));
+                                        }
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          enableDrag: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                FocusScope.of(context)
+                                                    .unfocus();
+                                                FocusManager
+                                                    .instance.primaryFocus
+                                                    ?.unfocus();
+                                              },
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child: const SizedBox(
+                                                  height: 700.0,
+                                                  child: CompradoWidget(),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+
+                                        await actions.deleteAllSubProducts();
+                                      },
+                                      text: 'Pagar',
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: const Color(0xFFCEE27D),
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color: const Color(0xFF464646),
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 0.0,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
                                     );
-                                  }
-                                  List<TarjetasRecord>
-                                      btnPagarTarjetasRecordList =
-                                      snapshot.data!;
-                                  // Return an empty Container when the item does not exist.
-                                  if (snapshot.data!.isEmpty) {
-                                    return Container();
-                                  }
-                                  final btnPagarTarjetasRecord =
-                                      btnPagarTarjetasRecordList.isNotEmpty
-                                          ? btnPagarTarjetasRecordList.first
-                                          : null;
-
-                                  return FFButtonWidget(
-                                    onPressed: () async {
-                                      if (getJsonField(
-                                        FFAppState().selectedCard,
-                                        r'''$.docRef''',
-                                      )) {
-                                        await PagosRecord.collection
-                                            .doc()
-                                            .set(createPagosRecordData(
-                                              userId: currentUserUid,
-                                              monto: 11.0,
-                                              fechaPago: getCurrentTimestamp,
-                                              tarjeta: btnPagarTarjetasRecord
-                                                  ?.reference,
-                                            ));
-                                      }
-                                    },
-                                    text: 'Pagar',
-                                    options: FFButtonOptions(
-                                      height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 16.0, 0.0),
-                                      iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color: const Color(0xFFCEE27D),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: const Color(0xFF464646),
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 0.0,
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  );
-                                },
+                                  },
+                                ),
                               ),
                             ),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),

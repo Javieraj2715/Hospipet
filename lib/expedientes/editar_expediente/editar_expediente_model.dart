@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 class EditarExpedienteModel extends FlutterFlowModel<EditarExpedienteWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final formKey1 = GlobalKey<FormState>();
+  final formKey2 = GlobalKey<FormState>();
+  final formKey3 = GlobalKey<FormState>();
   // State field(s) for txtNombreCliente widget.
   FocusNode? txtNombreClienteFocusNode;
   TextEditingController? txtNombreClienteTextController;

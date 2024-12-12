@@ -3,7 +3,7 @@ export '/login/login_pacientes/login_pacientes_widget.dart'
     show LoginPacientesWidget;
 export '/register/registro_paciente/registro_paciente_widget.dart'
     show RegistroPacienteWidget;
-export '/tienda/index/index_widget.dart' show IndexWidget;
+export '/register/tienda/index/index_widget.dart' show IndexWidget;
 export '/inventario/inventario/inventario_widget.dart' show InventarioWidget;
 export '/carrito_de_compras/carrito/carrito_widget.dart' show CarritoWidget;
 export '/citas/gestionar_citas/gestionar_citas_widget.dart'
@@ -24,7 +24,7 @@ export '/gestion_usuarios/lista_usuarios/lista_usuarios_widget.dart'
     show ListaUsuariosWidget;
 export '/gestion_usuarios/reset_password/reset_password_widget.dart'
     show ResetPasswordWidget;
-export '/register/expediente/expediente_widget.dart' show ExpedienteWidget;
+export '/expedientes/expediente/expediente_widget.dart' show ExpedienteWidget;
 export '/carrito_de_compras/tarjetas/tarjetas_widget.dart' show TarjetasWidget;
-export '/register/editar_expediente/editar_expediente_widget.dart'
+export '/expedientes/editar_expediente/editar_expediente_widget.dart'
     show EditarExpedienteWidget;

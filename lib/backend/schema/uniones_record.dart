@@ -15,20 +15,40 @@ class UnionesRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "NombrePropietario" field.
-  String? _nombrePropietario;
-  String get nombrePropietario => _nombrePropietario ?? '';
-  bool hasNombrePropietario() => _nombrePropietario != null;
+  // "email" field.
+  String? _email;
+  String get email => _email ?? '';
+  bool hasEmail() => _email != null;
 
-  // "CorreoElectronico" field.
-  String? _correoElectronico;
-  String get correoElectronico => _correoElectronico ?? '';
-  bool hasCorreoElectronico() => _correoElectronico != null;
+  // "display_name" field.
+  String? _displayName;
+  String get displayName => _displayName ?? '';
+  bool hasDisplayName() => _displayName != null;
 
-  // "Telefono" field.
-  int? _telefono;
-  int get telefono => _telefono ?? 0;
-  bool hasTelefono() => _telefono != null;
+  // "uid" field.
+  String? _uid;
+  String get uid => _uid ?? '';
+  bool hasUid() => _uid != null;
+
+  // "created_time" field.
+  DateTime? _createdTime;
+  DateTime? get createdTime => _createdTime;
+  bool hasCreatedTime() => _createdTime != null;
+
+  // "phone_number" field.
+  String? _phoneNumber;
+  String get phoneNumber => _phoneNumber ?? '';
+  bool hasPhoneNumber() => _phoneNumber != null;
+
+  // "edited_time" field.
+  DateTime? _editedTime;
+  DateTime? get editedTime => _editedTime;
+  bool hasEditedTime() => _editedTime != null;
+
+  // "user_name" field.
+  String? _userName;
+  String get userName => _userName ?? '';
+  bool hasUserName() => _userName != null;
 
   // "Cedula" field.
   String? _cedula;
@@ -46,18 +66,58 @@ class UnionesRecord extends FirestoreRecord {
   bool hasTipoAnimal() => _tipoAnimal != null;
 
   // "Edad" field.
-  int? _edad;
-  int get edad => _edad ?? 0;
+  String? _edad;
+  String get edad => _edad ?? '';
   bool hasEdad() => _edad != null;
 
+  // "Raza" field.
+  String? _raza;
+  String get raza => _raza ?? '';
+  bool hasRaza() => _raza != null;
+
+  // "Peso" field.
+  String? _peso;
+  String get peso => _peso ?? '';
+  bool hasPeso() => _peso != null;
+
+  // "AlergiasConocidas" field.
+  String? _alergiasConocidas;
+  String get alergiasConocidas => _alergiasConocidas ?? '';
+  bool hasAlergiasConocidas() => _alergiasConocidas != null;
+
+  // "MedicamentosActuales" field.
+  String? _medicamentosActuales;
+  String get medicamentosActuales => _medicamentosActuales ?? '';
+  bool hasMedicamentosActuales() => _medicamentosActuales != null;
+
+  // "NotasAdicionales" field.
+  String? _notasAdicionales;
+  String get notasAdicionales => _notasAdicionales ?? '';
+  bool hasNotasAdicionales() => _notasAdicionales != null;
+
+  // "Sexo" field.
+  String? _sexo;
+  String get sexo => _sexo ?? '';
+  bool hasSexo() => _sexo != null;
+
   void _initializeFields() {
-    _nombrePropietario = snapshotData['NombrePropietario'] as String?;
-    _correoElectronico = snapshotData['CorreoElectronico'] as String?;
-    _telefono = castToType<int>(snapshotData['Telefono']);
+    _email = snapshotData['email'] as String?;
+    _displayName = snapshotData['display_name'] as String?;
+    _uid = snapshotData['uid'] as String?;
+    _createdTime = snapshotData['created_time'] as DateTime?;
+    _phoneNumber = snapshotData['phone_number'] as String?;
+    _editedTime = snapshotData['edited_time'] as DateTime?;
+    _userName = snapshotData['user_name'] as String?;
     _cedula = snapshotData['Cedula'] as String?;
     _nombreMascota = snapshotData['NombreMascota'] as String?;
     _tipoAnimal = snapshotData['TipoAnimal'] as String?;
-    _edad = castToType<int>(snapshotData['Edad']);
+    _edad = snapshotData['Edad'] as String?;
+    _raza = snapshotData['Raza'] as String?;
+    _peso = snapshotData['Peso'] as String?;
+    _alergiasConocidas = snapshotData['AlergiasConocidas'] as String?;
+    _medicamentosActuales = snapshotData['MedicamentosActuales'] as String?;
+    _notasAdicionales = snapshotData['NotasAdicionales'] as String?;
+    _sexo = snapshotData['Sexo'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -95,23 +155,43 @@ class UnionesRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createUnionesRecordData({
-  String? nombrePropietario,
-  String? correoElectronico,
-  int? telefono,
+  String? email,
+  String? displayName,
+  String? uid,
+  DateTime? createdTime,
+  String? phoneNumber,
+  DateTime? editedTime,
+  String? userName,
   String? cedula,
   String? nombreMascota,
   String? tipoAnimal,
-  int? edad,
+  String? edad,
+  String? raza,
+  String? peso,
+  String? alergiasConocidas,
+  String? medicamentosActuales,
+  String? notasAdicionales,
+  String? sexo,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'NombrePropietario': nombrePropietario,
-      'CorreoElectronico': correoElectronico,
-      'Telefono': telefono,
+      'email': email,
+      'display_name': displayName,
+      'uid': uid,
+      'created_time': createdTime,
+      'phone_number': phoneNumber,
+      'edited_time': editedTime,
+      'user_name': userName,
       'Cedula': cedula,
       'NombreMascota': nombreMascota,
       'TipoAnimal': tipoAnimal,
       'Edad': edad,
+      'Raza': raza,
+      'Peso': peso,
+      'AlergiasConocidas': alergiasConocidas,
+      'MedicamentosActuales': medicamentosActuales,
+      'NotasAdicionales': notasAdicionales,
+      'Sexo': sexo,
     }.withoutNulls,
   );
 
@@ -123,24 +203,44 @@ class UnionesRecordDocumentEquality implements Equality<UnionesRecord> {
 
   @override
   bool equals(UnionesRecord? e1, UnionesRecord? e2) {
-    return e1?.nombrePropietario == e2?.nombrePropietario &&
-        e1?.correoElectronico == e2?.correoElectronico &&
-        e1?.telefono == e2?.telefono &&
+    return e1?.email == e2?.email &&
+        e1?.displayName == e2?.displayName &&
+        e1?.uid == e2?.uid &&
+        e1?.createdTime == e2?.createdTime &&
+        e1?.phoneNumber == e2?.phoneNumber &&
+        e1?.editedTime == e2?.editedTime &&
+        e1?.userName == e2?.userName &&
         e1?.cedula == e2?.cedula &&
         e1?.nombreMascota == e2?.nombreMascota &&
         e1?.tipoAnimal == e2?.tipoAnimal &&
-        e1?.edad == e2?.edad;
+        e1?.edad == e2?.edad &&
+        e1?.raza == e2?.raza &&
+        e1?.peso == e2?.peso &&
+        e1?.alergiasConocidas == e2?.alergiasConocidas &&
+        e1?.medicamentosActuales == e2?.medicamentosActuales &&
+        e1?.notasAdicionales == e2?.notasAdicionales &&
+        e1?.sexo == e2?.sexo;
   }
 
   @override
   int hash(UnionesRecord? e) => const ListEquality().hash([
-        e?.nombrePropietario,
-        e?.correoElectronico,
-        e?.telefono,
+        e?.email,
+        e?.displayName,
+        e?.uid,
+        e?.createdTime,
+        e?.phoneNumber,
+        e?.editedTime,
+        e?.userName,
         e?.cedula,
         e?.nombreMascota,
         e?.tipoAnimal,
-        e?.edad
+        e?.edad,
+        e?.raza,
+        e?.peso,
+        e?.alergiasConocidas,
+        e?.medicamentosActuales,
+        e?.notasAdicionales,
+        e?.sexo
       ]);
 
   @override
