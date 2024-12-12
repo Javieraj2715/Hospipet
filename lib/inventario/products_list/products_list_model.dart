@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'products_list_widget.dart' show ProductsListWidget;
 import 'package:flutter/material.dart';
@@ -9,6 +10,8 @@ class ProductsListModel extends FlutterFlowModel<ProductsListWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // Stores action output result for [Backend Call - Create Document] action in btnAgregarCarrito widget.
+  SubProductosRecord? subproducto;
 
   @override
   void initState(BuildContext context) {}
